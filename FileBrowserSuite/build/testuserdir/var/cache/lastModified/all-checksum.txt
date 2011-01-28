@@ -1,0 +1,5 @@
+/home/edwin/netbeans-7.0beta/platform=1294598958000
+/home/edwin/NetBeansProjects/FileBrowserSuite/build/cluster=1296166861000
+/home/edwin/netbeans-7.0beta/platform=1294598958000
+/home/edwin/NetBeansProjects/FileBrowserSuite/build/testuserdir=1296166861000
+crc=7

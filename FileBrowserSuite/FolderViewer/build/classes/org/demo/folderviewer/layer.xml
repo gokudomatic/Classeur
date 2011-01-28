@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.2//EN" "http://www.netbeans.org/dtds/filesystem-1_2.dtd">
+<filesystem>
+    <folder name="Actions">
+        <folder name="Window">
+            <file name="org-demo-folderviewer-FolderViewerAction.instance">
+                <attr name="component" methodvalue="org.demo.folderviewer.FolderViewerTopComponent.findInstance"/>
+                <attr name="displayName" bundlevalue="org.demo.folderviewer.Bundle#CTL_FolderViewerAction"/>
+                <attr name="instanceCreate" methodvalue="org.openide.windows.TopComponent.openAction"/>
+            </file>
+        </folder>
+    </folder>
+    <folder name="Menu">
+        <folder name="Window">
+            <file name="FolderViewerAction.shadow">
+                <attr name="originalFile" stringvalue="Actions/Window/org-demo-folderviewer-FolderViewerAction.instance"/>
+            </file>
+        </folder>
+    </folder>
+    <folder name="Windows2">
+        <folder name="Components">
+            <file name="FolderViewerTopComponent.settings" url="FolderViewerTopComponentSettings.xml"/>
+        </folder>
+        <folder name="Modes">
+            <folder name="explorer">
+                <file name="FolderViewerTopComponent.wstcref" url="FolderViewerTopComponentWstcref.xml"/>
+            </folder>
+        </folder>
+    </folder>
+</filesystem>
