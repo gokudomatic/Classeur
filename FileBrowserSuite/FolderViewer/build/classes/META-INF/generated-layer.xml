@@ -38,4 +38,17 @@
             </folder>
         </folder>
     </folder>
+    <folder name="Actions">
+        <folder name="View">
+            <file name="org-demo-folderviewer-ShowTreeViewFolderAction.instance">
+                <!--org.demo.folderviewer.ShowTreeViewFolderAction-->
+                <attr
+                    bundlevalue="org.demo.folderviewer.Bundle#CTL_ShowTreeViewFolderAction" name="displayName"/>
+                <attr
+                    methodvalue="org.openide.awt.Actions.alwaysEnabled" name="instanceCreate"/>
+                <attr name="delegate" newvalue="org.demo.folderviewer.ShowTreeViewFolderAction"/>
+                <attr boolvalue="false" name="noIconInMenu"/>
+            </file>
+        </folder>
+    </folder>
 </filesystem>
