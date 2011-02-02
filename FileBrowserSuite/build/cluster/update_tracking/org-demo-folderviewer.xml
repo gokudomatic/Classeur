@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module codename="org.demo.folderviewer">
-    <module_version install_time="1296647523041" last="true" origin="installer" specification_version="1.0">
-        <file crc="703461414" name="config/Modules/org-demo-folderviewer.xml"/>
-        <file crc="2555882250" name="modules/org-demo-folderviewer.jar"/>
+    <module_version install_time="1296689987585" last="true" origin="installer" specification_version="1.0">
+        <file crc="3058163637" name="config/Modules/org-demo-folderviewer.xml"/>
+        <file crc="559500842" name="modules/org-demo-folderviewer.jar"/>
     </module_version>
 </module>

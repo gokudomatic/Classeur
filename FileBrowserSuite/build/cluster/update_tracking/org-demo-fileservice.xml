@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module codename="org.demo.fileservice">
+    <module_version install_time="1296689902987" last="true" origin="installer" specification_version="1.0">
+        <file crc="2686526407" name="config/Modules/org-demo-fileservice.xml"/>
+        <file crc="331316528" name="modules/org-demo-fileservice.jar"/>
+    </module_version>
+</module>

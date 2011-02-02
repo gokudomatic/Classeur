@@ -4,9 +4,12 @@
  */
 package org.demo.folderviewer;
 
+import java.io.File;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.swing.Action;
+import javax.swing.SwingUtilities;
+import org.demo.fileservice.Folder;
 import org.openide.util.NbBundle;
 import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
@@ -14,6 +17,8 @@ import org.openide.windows.WindowManager;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.explorer.ExplorerManager;
 import org.openide.explorer.view.BeanTreeView;
+import org.openide.nodes.AbstractNode;
+import org.openide.nodes.Children;
 import org.openide.util.Utilities;
 
 /**
@@ -35,7 +40,14 @@ public final class FolderViewerTopComponent extends TopComponent implements Expl
         setName(NbBundle.getMessage(FolderViewerTopComponent.class, "CTL_FolderViewerTopComponent"));
         setToolTipText(NbBundle.getMessage(FolderViewerTopComponent.class, "HINT_FolderViewerTopComponent"));
 //        setIcon(ImageUtilities.loadImage(ICON_PATH, true));
-
+        
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                em.setRootContext(new AbstractNode(Children.create(new FolderChildFactory(new Folder("//home//edwin//Documents")), true)));
+            }
+        });
+        
     }
 
     /** This method is called from within the constructor to
