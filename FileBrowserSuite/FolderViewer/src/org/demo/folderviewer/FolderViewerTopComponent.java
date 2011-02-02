@@ -4,7 +4,9 @@
  */
 package org.demo.folderviewer;
 
+import java.util.List;
 import java.util.logging.Logger;
+import javax.swing.Action;
 import org.openide.util.NbBundle;
 import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
@@ -12,6 +14,7 @@ import org.openide.windows.WindowManager;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.explorer.ExplorerManager;
 import org.openide.explorer.view.BeanTreeView;
+import org.openide.util.Utilities;
 
 /**
  * Top component which displays something.
@@ -28,6 +31,7 @@ public final class FolderViewerTopComponent extends TopComponent implements Expl
 
     public FolderViewerTopComponent() {
         initComponents();
+        initToolbar();
         setName(NbBundle.getMessage(FolderViewerTopComponent.class, "CTL_FolderViewerTopComponent"));
         setToolTipText(NbBundle.getMessage(FolderViewerTopComponent.class, "HINT_FolderViewerTopComponent"));
 //        setIcon(ImageUtilities.loadImage(ICON_PATH, true));
@@ -44,6 +48,7 @@ public final class FolderViewerTopComponent extends TopComponent implements Expl
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new BeanTreeView();
+        folderViewToolbar = new javax.swing.JToolBar();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -58,8 +63,13 @@ public final class FolderViewerTopComponent extends TopComponent implements Expl
 
         setLayout(new java.awt.BorderLayout());
         add(jScrollPane1, java.awt.BorderLayout.CENTER);
+
+        folderViewToolbar.setFloatable(false);
+        folderViewToolbar.setRollover(true);
+        add(folderViewToolbar, java.awt.BorderLayout.NORTH);
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToolBar folderViewToolbar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
@@ -142,5 +152,13 @@ public final class FolderViewerTopComponent extends TopComponent implements Expl
 
     void setTreeViewMode() {
         throw new UnsupportedOperationException("Not yet implemented");
+    }
+    
+    
+    private void initToolbar(){
+        List<? extends Action> alist = Utilities.actionsForPath("Toolbars/FolderViewToolbar");
+        for (Action action : alist) {
+            this.folderViewToolbar.add(action);
+        }
     }
 }

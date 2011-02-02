@@ -1,5 +1,5 @@
-/home/edwin/netbeans-7.0beta/platform=1294598958000
-/home/edwin/NetBeansProjects/Classeur/FileBrowserSuite/build/cluster=1296600852000
-/home/edwin/netbeans-7.0beta/platform=1294598958000
-/home/edwin/NetBeansProjects/Classeur/FileBrowserSuite/FolderViewer/../build/testuserdir=1296600852000
+C:\Program Files\NetBeans 7.0 Beta\platform=1294650896043
+C:\temp\Classeur\FileBrowserSuite\build\cluster=1296647523135
+C:\Program Files\NetBeans 7.0 Beta\platform=1294650896043
+C:\temp\Classeur\FileBrowserSuite\build\testuserdir=1296647523135
 crc=7

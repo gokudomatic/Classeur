@@ -27,4 +27,11 @@
             </folder>
         </folder>
     </folder>
+    <folder name="Toolbars">
+        <folder name="FolderViewToolbar">
+            <file name="org-demo-folderviewer-CreateWidgetAction.shadow">
+                <attr name="originalFile" stringvalue="Actions/FolderViewToolbar/org-demo-folderviewer-CreateWidgetAction.instance"/>
+            </file>
+        </folder>
+    </folder>
 </filesystem>

@@ -69,6 +69,11 @@
                 <attr name="originalFile" stringvalue="Actions/View/org-demo-folderviewer-ShowTabbedViewFolderAction.instance"/>
                 <attr intvalue="500" name="position"/>
             </file>
+            <file name="org-demo-folderviewer-ShowTreeViewFolderAction.shadow">
+                <!--org.demo.folderviewer.ShowTreeViewFolderAction-->
+                <attr name="originalFile" stringvalue="Actions/View/org-demo-folderviewer-ShowTreeViewFolderAction.instance"/>
+                <attr intvalue="500" name="position"/>
+            </file>
         </folder>
     </folder>
 </filesystem>

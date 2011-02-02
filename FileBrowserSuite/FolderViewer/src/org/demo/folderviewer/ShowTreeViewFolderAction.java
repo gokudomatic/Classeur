@@ -14,7 +14,9 @@ import org.openide.awt.ActionID;
 @ActionID(category = "View",
 id = "org.demo.folderviewer.ShowTreeViewFolderAction")
 @ActionRegistration(iconBase = "org/demo/folderviewer/icons/pane-tree.png",displayName = "#CTL_ShowTreeViewFolderAction")
-@ActionReferences({})
+@ActionReferences({
+    @ActionReference(path = "Toolbars/FolderViewToolbar", position = 500)
+})
 public final class ShowTreeViewFolderAction implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {

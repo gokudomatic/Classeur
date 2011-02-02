@@ -1,21 +1,21 @@
 -------------------------------------------------------------------------------
->Log Session: Tuesday, February 1, 2011 11:54:13 PM CET
+>Log Session: Wednesday, February 2, 2011 12:52:07 PM CET
 >System Info: 
   Product Version         = FileBrowserSuite 201011152355
-  Operating System        = Linux version 2.6.35-25-generic running on amd64
-  Java; VM; Vendor        = 1.6.0_22; Java HotSpot(TM) 64-Bit Server VM 17.1-b03; Sun Microsystems Inc.
-  Runtime                 = Java(TM) SE Runtime Environment 1.6.0_22-b04
-  Java Home               = /usr/lib/jvm/java-6-sun-1.6.0.22/jre
-  System Locale; Encoding = en_US (filebrowsersuite); UTF-8
-  Home Directory          = /home/edwin
-  Current Directory       = /home/edwin/NetBeansProjects/Classeur/FileBrowserSuite/FolderViewer
-  User Directory          = /home/edwin/NetBeansProjects/Classeur/FileBrowserSuite/build/testuserdir
-  Installation            = /home/edwin/NetBeansProjects/Classeur/FileBrowserSuite/build/cluster
-                            /home/edwin/netbeans-7.0beta/platform
-                            /home/edwin/netbeans-7.0beta/platform
-  Boot & Ext. Classpath   = /usr/lib/jvm/java-6-sun-1.6.0.22/jre/lib/resources.jar:/usr/lib/jvm/java-6-sun-1.6.0.22/jre/lib/rt.jar:/usr/lib/jvm/java-6-sun-1.6.0.22/jre/lib/sunrsasign.jar:/usr/lib/jvm/java-6-sun-1.6.0.22/jre/lib/jsse.jar:/usr/lib/jvm/java-6-sun-1.6.0.22/jre/lib/jce.jar:/usr/lib/jvm/java-6-sun-1.6.0.22/jre/lib/charsets.jar:/usr/lib/jvm/java-6-sun-1.6.0.22/jre/classes:/usr/lib/jvm/java-6-sun-1.6.0.22/jre/lib/ext/sunjce_provider.jar:/usr/lib/jvm/java-6-sun-1.6.0.22/jre/lib/ext/dnsns.jar:/usr/lib/jvm/java-6-sun-1.6.0.22/jre/lib/ext/sunpkcs11.jar:/usr/lib/jvm/java-6-sun-1.6.0.22/jre/lib/ext/localedata.jar
-  Application Classpath   = /home/edwin/netbeans-7.0beta/platform/lib/boot.jar:/home/edwin/netbeans-7.0beta/platform/lib/org-openide-modules.jar:/home/edwin/netbeans-7.0beta/platform/lib/org-openide-util-lookup.jar:/home/edwin/netbeans-7.0beta/platform/lib/org-openide-util.jar:/home/edwin/netbeans-7.0beta/platform/lib/locale/boot_ja.jar:/home/edwin/netbeans-7.0beta/platform/lib/locale/boot_pt_BR.jar:/home/edwin/netbeans-7.0beta/platform/lib/locale/boot_zh_CN.jar:/home/edwin/netbeans-7.0beta/platform/lib/locale/org-openide-modules_ja.jar:/home/edwin/netbeans-7.0beta/platform/lib/locale/org-openide-modules_pt_BR.jar:/home/edwin/netbeans-7.0beta/platform/lib/locale/org-openide-modules_zh_CN.jar:/home/edwin/netbeans-7.0beta/platform/lib/locale/org-openide-util-lookup_ja.jar:/home/edwin/netbeans-7.0beta/platform/lib/locale/org-openide-util-lookup_pt_BR.jar:/home/edwin/netbeans-7.0beta/platform/lib/locale/org-openide-util-lookup_zh_CN.jar:/home/edwin/netbeans-7.0beta/platform/lib/locale/org-openide-util_ja.jar:/home/edwin/netbeans-7.0beta/platform/lib/locale/org-openide-util_pt_BR.jar:/home/edwin/netbeans-7.0beta/platform/lib/locale/org-openide-util_zh_CN.jar:/usr/lib/jvm/java-6-sun-1.6.0.22/lib/dt.jar:/usr/lib/jvm/java-6-sun-1.6.0.22/lib/tools.jar
-  Startup Classpath       = /home/edwin/netbeans-7.0beta/platform/core/core.jar:/home/edwin/netbeans-7.0beta/platform/core/org-openide-filesystems.jar:/home/edwin/netbeans-7.0beta/platform/core/locale/org-openide-filesystems_zh_CN.jar:/home/edwin/netbeans-7.0beta/platform/core/locale/org-openide-filesystems_ja.jar:/home/edwin/netbeans-7.0beta/platform/core/locale/core_ja.jar:/home/edwin/netbeans-7.0beta/platform/core/locale/org-openide-filesystems_pt_BR.jar:/home/edwin/netbeans-7.0beta/platform/core/locale/core_zh_CN.jar:/home/edwin/netbeans-7.0beta/platform/core/locale/core_pt_BR.jar:/home/edwin/NetBeansProjects/Classeur/FileBrowserSuite/build/cluster/core/locale/core_filebrowsersuite.jar
+  Operating System        = Windows XP version 5.1 running on x86
+  Java; VM; Vendor        = 1.6.0_20; Java HotSpot(TM) Server VM 16.3-b01; Sun Microsystems Inc.
+  Runtime                 = Java(TM) SE Runtime Environment 1.6.0_20-b02
+  Java Home               = C:\Program Files\Java\jdk1.6.0_20\jre
+  System Locale; Encoding = fr_CH (filebrowsersuite); Cp1252
+  Home Directory          = C:\Documents and Settings\ECO
+  Current Directory       = C:\temp\Classeur\FileBrowserSuite\FolderViewer
+  User Directory          = C:\temp\Classeur\FileBrowserSuite\build\testuserdir
+  Installation            = C:\temp\Classeur\FileBrowserSuite\build\cluster
+                            C:\Program Files\NetBeans 7.0 Beta\platform
+                            C:\Program Files\NetBeans 7.0 Beta\platform
+  Boot & Ext. Classpath   = C:\Program Files\Java\jdk1.6.0_20\jre\lib\resources.jar;C:\Program Files\Java\jdk1.6.0_20\jre\lib\rt.jar;C:\Program Files\Java\jdk1.6.0_20\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.6.0_20\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.6.0_20\jre\lib\jce.jar;C:\Program Files\Java\jdk1.6.0_20\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.6.0_20\jre\classes;C:\Program Files\Java\jdk1.6.0_20\jre\lib\ext\dnsns.jar;C:\Program Files\Java\jdk1.6.0_20\jre\lib\ext\localedata.jar;C:\Program Files\Java\jdk1.6.0_20\jre\lib\ext\sunjce_provider.jar;C:\Program Files\Java\jdk1.6.0_20\jre\lib\ext\sunmscapi.jar;C:\Program Files\Java\jdk1.6.0_20\jre\lib\ext\sunpkcs11.jar
+  Application Classpath   = C:\Program Files\NetBeans 7.0 Beta\platform\lib\boot.jar;C:\Program Files\NetBeans 7.0 Beta\platform\lib\org-openide-modules.jar;C:\Program Files\NetBeans 7.0 Beta\platform\lib\org-openide-util-lookup.jar;C:\Program Files\NetBeans 7.0 Beta\platform\lib\org-openide-util.jar;C:\Program Files\NetBeans 7.0 Beta\platform\lib\locale\boot_ja.jar;C:\Program Files\NetBeans 7.0 Beta\platform\lib\locale\boot_pt_BR.jar;C:\Program Files\NetBeans 7.0 Beta\platform\lib\locale\boot_zh_CN.jar;C:\Program Files\NetBeans 7.0 Beta\platform\lib\locale\org-openide-modules_ja.jar;C:\Program Files\NetBeans 7.0 Beta\platform\lib\locale\org-openide-modules_pt_BR.jar;C:\Program Files\NetBeans 7.0 Beta\platform\lib\locale\org-openide-modules_zh_CN.jar;C:\Program Files\NetBeans 7.0 Beta\platform\lib\locale\org-openide-util-lookup_ja.jar;C:\Program Files\NetBeans 7.0 Beta\platform\lib\locale\org-openide-util-lookup_pt_BR.jar;C:\Program Files\NetBeans 7.0 Beta\platform\lib\locale\org-openide-util-lookup_zh_CN.jar;C:\Program Files\NetBeans 7.0 Beta\platform\lib\locale\org-openide-util_ja.jar;C:\Program Files\NetBeans 7.0 Beta\platform\lib\locale\org-openide-util_pt_BR.jar;C:\Program Files\NetBeans 7.0 Beta\platform\lib\locale\org-openide-util_zh_CN.jar;C:\Program Files\Java\jdk1.6.0_20\lib\dt.jar;C:\Program Files\Java\jdk1.6.0_20\lib\tools.jar
+  Startup Classpath       = C:\Program Files\NetBeans 7.0 Beta\platform\core\core.jar;C:\Program Files\NetBeans 7.0 Beta\platform\core\org-openide-filesystems.jar;C:\Program Files\NetBeans 7.0 Beta\platform\core\locale\core_ja.jar;C:\Program Files\NetBeans 7.0 Beta\platform\core\locale\core_pt_BR.jar;C:\Program Files\NetBeans 7.0 Beta\platform\core\locale\core_zh_CN.jar;C:\Program Files\NetBeans 7.0 Beta\platform\core\locale\org-openide-filesystems_ja.jar;C:\Program Files\NetBeans 7.0 Beta\platform\core\locale\org-openide-filesystems_pt_BR.jar;C:\Program Files\NetBeans 7.0 Beta\platform\core\locale\org-openide-filesystems_zh_CN.jar;C:\temp\Classeur\FileBrowserSuite\build\cluster\core\locale\core_filebrowsersuite.jar
 -------------------------------------------------------------------------------
 INFO [org.netbeans.core.startup.NbEvents]: Turning on modules:
 	org.openide.util.lookup [8.5 201011152355]
@@ -23,10 +23,12 @@ INFO [org.netbeans.core.startup.NbEvents]: Turning on modules:
 	org.openide.modules [7.21 201011152355]
 	org.openide.filesystems [7.42 201011152355]
 	org.openide.awt [7.29 201011152355]
+	org.openide.io [1.25 201011152355]
 	org.netbeans.api.progress/1 [1.22 201011152355]
 	org.openide.dialogs [7.17 201011152355]
 	org.openide.nodes [7.18 201011152355]
 	org.openide.windows [6.35 201011152355]
+	org.netbeans.core.io.ui/1 [1.10 201011152355]
 	org.netbeans.swing.tabcontrol [1.23 201011152355]
 	org.netbeans.swing.outline [1.11 201011152355]
 	org.openide.explorer [6.32 201011152355]
@@ -40,45 +42,55 @@ INFO [org.netbeans.core.startup.NbEvents]: Turning on modules:
 	org.netbeans.modules.queries/1 [1.21 201011152355]
 	org.openide.loaders [7.19 201011152355]
 	org.netbeans.modules.keyring [1.4 201011152355]
-	org.openide.io [1.25 201011152355]
 	org.netbeans.swing.plaf [1.18 201011152355]
 	org.netbeans.core/2 [3.22 201011152355]
 	org.netbeans.modules.options.api/1 [1.20 201011152355]
 	org.netbeans.modules.settings/1 [1.28 201011152355]
 	org.netbeans.core.windows/2 [2.23 201011152355]
-	org.demo.folderviewer [1.0 110201]
-	org.netbeans.libs.osgi [1.3 201011152355]
-	org.netbeans.core.netigso [1.7 201011152355]
-	org.netbeans.modules.print [7.7 201011152355]
-	org.netbeans.core.output2/1 [1.20 201011152355]
-	org.netbeans.modules.progress.ui [1.14 201011152355]
-	org.netbeans.libs.felix [1.3 201011152355]
-	org.netbeans.modules.options.keymap [1.12 201011152355]
-	org.netbeans.core.io.ui/1 [1.10 201011152355]
-	org.netbeans.core.ui/1 [1.25 201011152355]
+	org.demo.folderviewer [1.0 110202]
 	org.netbeans.libs.jna/1 [1.10 201011152355]
-	org.netbeans.modules.masterfs/2 [2.29 201011152355]
 	org.netbeans.core.nativeaccess/1 [1.9 201011152355]
-	org.netbeans.modules.editor.mimelookup.impl/1 [1.12 201011152355]
 	org.netbeans.modules.keyring.impl [1.1 201011152355]
+	org.netbeans.modules.masterfs/2 [2.29 201011152355]
+	org.netbeans.libs.osgi [1.3 201011152355]
+	org.netbeans.core.output2/1 [1.20 201011152355]
+	org.netbeans.core.ui/1 [1.25 201011152355]
+	org.netbeans.modules.print [7.7 201011152355]
+	org.netbeans.modules.editor.mimelookup.impl/1 [1.12 201011152355]
+	org.netbeans.modules.options.keymap [1.12 201011152355]
+	org.netbeans.core.netigso [1.7 201011152355]
+	org.netbeans.libs.felix [1.3 201011152355]
+	org.netbeans.modules.progress.ui [1.14 201011152355]
 WARNING [org.openide.filesystems.Ordering]: Not all children in Toolbars/ marked with the position attribute: [FolderViewToolbar], but some are: [File, Clipboard, UndoRedo, Memory, Standard.xml]
+WARNING [org.openide.filesystems.Ordering]: Found same position 500 for both Toolbars/FolderViewToolbar/org-demo-folderviewer-ShowTabbedViewFolderAction.shadow and Toolbars/FolderViewToolbar/org-demo-folderviewer-ShowTreeViewFolderAction.shadow
+WARNING [org.openide.filesystems.Ordering]: Not all children in Toolbars/FolderViewToolbar/ marked with the position attribute: [org-demo-folderviewer-CreateWidgetAction.shadow], but some are: [org-demo-folderviewer-ShowTabbedViewFolderAction.shadow, org-demo-folderviewer-ShowTreeViewFolderAction.shadow]
 Diagnostic information
 Input arguments:
-	-Djdk.home=/usr/lib/jvm/java-6-sun-1.6.0.22
-	-Dnetbeans.system_http_proxy=DIRECT
-	-Dnetbeans.system_http_non_proxy_hosts=
-	-Dnetbeans.dirs=/home/edwin/NetBeansProjects/Classeur/FileBrowserSuite/build/cluster:/home/edwin/netbeans-7.0beta/platform
-	-Dnetbeans.home=/home/edwin/netbeans-7.0beta/platform
 	-Dnetbeans.logger.console=true
 	-ea
+	-Djdk.home=C:\Program
+	Files\Java\jdk1.6.0_20
+	-splash:C:\temp\Classeur\FileBrowserSuite\build\testuserdir\var\cache\splash.png
+	-Dnetbeans.home=C:\Program
+	Files\NetBeans
+	7.0
+	Beta\platform
+	-Dnetbeans.user=C:\temp\Classeur\FileBrowserSuite\build\testuserdir
 	-XX:+HeapDumpOnOutOfMemoryError
-	-XX:HeapDumpPath=/home/edwin/NetBeansProjects/Classeur/FileBrowserSuite/FolderViewer/../build/testuserdir/var/log/heapdump.hprof
-Compiler: HotSpot 64-Bit Server Compiler
-Heap memory usage: initial 31.4MB maximum 448.0MB
-Non heap memory usage: initial 23.2MB maximum 132.0MB
-Garbage collector: PS Scavenge (Collections=4 Total time spent=0s)
+	-XX:HeapDumpPath=C:\temp\Classeur\FileBrowserSuite\build\testuserdir\var\log\heapdump.hprof
+	-Dnetbeans.system_http_proxy=proxy.ju.globaz.ch:8080
+	-Dnetbeans.system_http_non_proxy_hosts=*.ju.globaz.ch;http://*.ju.globaz.ch;*.globaz.ch;*.intranet-avs.ch;*.gilai.ocai.ch;192.168.200.*;131.102.106.*;*.kssl.admin.ch;*.sshprod.admin.ch;131.102.37.*;162.23.*;10.128.*;*.gilai.oai.ch;10.204.22.*;10.8.20.*;10.204.66.*;*.inac.vs.ch;*.intranet-heb.ch;172.16.*;172.18.*;10.1.16.*;217.162.16.*;10.17.1.*;10.64.1.*;10.16.*;10.3.1.*;ebusiness.caisseavsjura.ch;10.76.210.*;*.inforom.ch;ebusiness.cicicam-cinalfa.ch;avs22.ebusiness-avs.ch;avs22132.ebusiness-avs.ch;<local>
+	-Dsun.awt.keepWorkingSetOnMinimize=true
+	-Dnetbeans.dirs=C:\temp\Classeur\FileBrowserSuite\build\cluster;C:\Program
+	Files\NetBeans
+	7.0
+	Beta\platform
+Compiler: HotSpot Tiered Compilers
+Heap memory usage: initial 31.8MB maximum 453.4MB
+Non heap memory usage: initial 18.2MB maximum 112.0MB
+Garbage collector: PS Scavenge (Collections=6 Total time spent=0s)
 Garbage collector: PS MarkSweep (Collections=0 Total time spent=0s)
-Classes: loaded=3817 total loaded=3817 unloaded 0
-INFO [org.netbeans.core.ui.warmup.DiagnosticTask]: Total memory 2,106,302,464
-INFO [null]: Total physical memory 2,106,302,464
+Classes: loaded=3720 total loaded=3720 unloaded 0
+INFO [org.netbeans.core.ui.warmup.DiagnosticTask]: Total memory 2'136'514'560
+INFO [null]: Total physical memory 2'136'514'560
 WARNING [org.openide.filesystems.Ordering]: Not all children in Menu/Window/ marked with the position attribute: [FolderViewerAction.shadow], but some are: [org-netbeans-core-windows-actions-GlobalPropertiesAction.shadow, Output, SwitchToRecentDocumentAction.shadow, ProgressListAction.shadow, Separator3.instance, CloseWindowAction.shadow, MaximizeWindowAction.shadow, org-netbeans-core-windows-actions-UndockAction.shadow, Separator4.instance, CloneDocumentAction.shadow, CloseAllDocumentsAction.shadow, CloseAllButThisAction.shadow, DocumentsAction.shadow, Separator5.instance, org-netbeans-core-windows-actions-ResetWindowsAction.shadow]
