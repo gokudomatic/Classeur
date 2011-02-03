@@ -8,7 +8,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import org.demo.fileservice.Folder;
-import org.openide.nodes.AbstractNode;
 import org.openide.nodes.ChildFactory;
 import org.openide.nodes.Children;
 import org.openide.nodes.Node;
@@ -52,9 +51,9 @@ public class FolderChildFactory extends ChildFactory<Folder> {
         }
         Node node;
         if (subfolders.size() > 0) {
-            node = new AbstractNode(Children.create(new FolderChildFactory(subfolders), true),Lookups.singleton(key));
+            node = new FolderNode(Children.create(new FolderChildFactory(subfolders), true),Lookups.singleton(key));
         } else {
-            node=new AbstractNode(Children.LEAF,Lookups.singleton(key));
+            node=new FolderNode(Children.LEAF,Lookups.singleton(key));
         }
 
         node.setDisplayName(key.getName());

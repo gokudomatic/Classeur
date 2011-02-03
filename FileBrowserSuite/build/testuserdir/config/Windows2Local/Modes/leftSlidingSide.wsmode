@@ -8,6 +8,5 @@
   <state type="joined" />
   <bounds x="1" y="0" width="266" height="446" />
   <frame state="0"/>
-    <active-tc  id="FolderViewerTopComponent" />
     <empty-behavior permanent="true"/>
 </mode>

@@ -4,7 +4,6 @@
  */
 package org.demo.folderviewer;
 
-import java.io.File;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.swing.Action;
@@ -17,7 +16,6 @@ import org.openide.windows.WindowManager;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.explorer.ExplorerManager;
 import org.openide.explorer.view.BeanTreeView;
-import org.openide.nodes.AbstractNode;
 import org.openide.nodes.Children;
 import org.openide.util.Utilities;
 
@@ -44,7 +42,9 @@ public final class FolderViewerTopComponent extends TopComponent implements Expl
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                em.setRootContext(new AbstractNode(Children.create(new FolderChildFactory(new Folder("//home//edwin//Documents")), true)));
+                FolderNode rootNode=new FolderNode(Children.create(new FolderChildFactory(new Folder("//home//edwin//Documents")), true));
+                rootNode.setDisplayName("root");
+                em.setRootContext(rootNode);
             }
         });
         

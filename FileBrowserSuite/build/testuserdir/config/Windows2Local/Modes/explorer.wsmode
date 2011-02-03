@@ -11,5 +11,6 @@
   </constraints>
   <bounds x="192" y="237" width="614" height="540" />
   <frame state="0"/>
+    <active-tc  id="FolderViewerTopComponent" />
     <empty-behavior permanent="true"/>
 </mode>

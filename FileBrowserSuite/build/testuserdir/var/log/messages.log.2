@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
->Log Session: Thursday, February 3, 2011 12:38:23 AM CET
+>Log Session: Thursday, February 3, 2011 11:47:22 PM CET
 >System Info: 
   Product Version         = FileBrowserSuite 201011152355
   Operating System        = Linux version 2.6.35-25-generic running on amd64
@@ -8,7 +8,7 @@
   Java Home               = /usr/lib/jvm/java-6-sun-1.6.0.22/jre
   System Locale; Encoding = en_US (filebrowsersuite); UTF-8
   Home Directory          = /home/edwin
-  Current Directory       = /home/edwin/NetBeansProjects/Classeur/FileBrowserSuite/FileService
+  Current Directory       = /home/edwin/NetBeansProjects/Classeur/FileBrowserSuite/FolderViewer
   User Directory          = /home/edwin/NetBeansProjects/Classeur/FileBrowserSuite/build/testuserdir
   Installation            = /home/edwin/NetBeansProjects/Classeur/FileBrowserSuite/build/cluster
                             /home/edwin/netbeans-7.0beta/platform
@@ -21,19 +21,18 @@ INFO [org.netbeans.core.startup.NbEvents]: Turning on modules:
 	org.openide.util.lookup [8.5 201011152355]
 	org.openide.util [8.9 201011152355]
 	org.openide.modules [7.21 201011152355]
+	org.openide.io [1.25 201011152355]
+	org.demo.fileservice [1.0 110202]
 	org.openide.filesystems [7.42 201011152355]
 	org.openide.awt [7.29 201011152355]
 	org.netbeans.api.progress/1 [1.22 201011152355]
+	org.netbeans.modules.editor.mimelookup/1 [1.20 201011152355]
 	org.openide.dialogs [7.17 201011152355]
 	org.openide.nodes [7.18 201011152355]
 	org.openide.windows [6.35 201011152355]
 	org.netbeans.swing.tabcontrol [1.23 201011152355]
 	org.netbeans.swing.outline [1.11 201011152355]
 	org.openide.explorer [6.32 201011152355]
-	org.openide.io [1.25 201011152355]
-	org.netbeans.core.io.ui/1 [1.10 201011152355]
-	org.demo.fileservice [1.0 110202]
-	org.netbeans.modules.editor.mimelookup/1 [1.20 201011152355]
 	org.openide.text [6.33 201011152355]
 	org.openide.actions [6.19 201011152355]
 	org.netbeans.modules.queries/1 [1.21 201011152355]
@@ -42,51 +41,30 @@ INFO [org.netbeans.core.startup.NbEvents]: Turning on modules:
 	org.netbeans.bootstrap/1 [2.37 201011152355]
 	org.netbeans.core.startup/1 [1.27 201011152355]
 	org.netbeans.modules.settings/1 [1.28 201011152355]
+	org.netbeans.libs.osgi [1.3 201011152355]
+	org.netbeans.libs.jna/1 [1.10 201011152355]
+	org.netbeans.modules.masterfs/2 [2.29 201011152355]
 	org.netbeans.api.annotations.common/1 [1.7 201011152355]
 	org.netbeans.spi.quicksearch [1.8 201011152355]
 	org.netbeans.modules.keyring [1.4 201011152355]
 	org.netbeans.swing.plaf [1.18 201011152355]
 	org.netbeans.core/2 [3.22 201011152355]
 	org.netbeans.modules.options.api/1 [1.20 201011152355]
-	org.netbeans.libs.osgi [1.3 201011152355]
-	org.netbeans.core.netigso [1.7 201011152355]
-	org.netbeans.libs.jna/1 [1.10 201011152355]
-	org.netbeans.modules.masterfs/2 [2.29 201011152355]
 	org.netbeans.core.windows/2 [2.23 201011152355]
-	org.netbeans.core.nativeaccess/1 [1.9 201011152355]
-	org.demo.folderviewer [1.0 110202]
+	org.demo.folderviewer [1.0 110203]
+	org.netbeans.core.output2/1 [1.20 201011152355]
 	org.netbeans.libs.felix [1.3 201011152355]
 	org.netbeans.modules.options.keymap [1.12 201011152355]
-	org.netbeans.core.output2/1 [1.20 201011152355]
+	org.netbeans.core.nativeaccess/1 [1.9 201011152355]
 	org.netbeans.core.ui/1 [1.25 201011152355]
+	org.netbeans.core.netigso [1.7 201011152355]
+	org.netbeans.core.io.ui/1 [1.10 201011152355]
 	org.netbeans.modules.keyring.impl [1.1 201011152355]
 	org.netbeans.modules.progress.ui [1.14 201011152355]
 	org.netbeans.modules.print [7.7 201011152355]
 WARNING [org.openide.filesystems.Ordering]: Not all children in Toolbars/ marked with the position attribute: [FolderViewToolbar], but some are: [File, Clipboard, UndoRedo, Memory, Standard.xml]
 WARNING [org.openide.filesystems.Ordering]: Found same position 500 for both Toolbars/FolderViewToolbar/org-demo-folderviewer-ShowTabbedViewFolderAction.shadow and Toolbars/FolderViewToolbar/org-demo-folderviewer-ShowTreeViewFolderAction.shadow
 WARNING [org.openide.filesystems.Ordering]: Not all children in Toolbars/FolderViewToolbar/ marked with the position attribute: [org-demo-folderviewer-CreateWidgetAction.shadow], but some are: [org-demo-folderviewer-ShowTabbedViewFolderAction.shadow, org-demo-folderviewer-ShowTreeViewFolderAction.shadow]
-WARNING [org.openide.nodes.NodeOp]
-java.lang.ClassCastException: java.io.File cannot be cast to org.demo.fileservice.Folder
-	at org.demo.folderviewer.FolderChildFactory.createNodeForKey(FolderChildFactory.java:50)
-	at org.demo.folderviewer.FolderChildFactory.createNodeForKey(FolderChildFactory.java:21)
-	at org.openide.nodes.ChildFactory.createNodesForKey(ChildFactory.java:120)
-	at org.openide.nodes.AsynchChildren.createNodes(AsynchChildren.java:161)
-	at org.openide.nodes.Children$Keys$KE.nodes(Children.java:1648)
-[catch] at org.openide.nodes.ChildrenArray.nodesFor(ChildrenArray.java:149)
-	at org.openide.nodes.EntrySupport$Default$Info.nodes(EntrySupport.java:935)
-	at org.openide.nodes.EntrySupport$Default.updateAdd(EntrySupport.java:522)
-	at org.openide.nodes.EntrySupport$Default.setEntries(EntrySupport.java:362)
-	at org.openide.nodes.Children$Keys$2.run(Children.java:1542)
-	at org.openide.util.Mutex$1Exec.run(Mutex.java:1244)
-	at org.openide.nodes.Children$ProjectManagerDeadlockDetector.execute(Children.java:1907)
-	at org.openide.util.Mutex.postRequest(Mutex.java:1250)
-	at org.openide.util.Mutex.postRequest(Mutex.java:1213)
-	at org.openide.util.Mutex.postWriteRequest(Mutex.java:585)
-	at org.openide.nodes.Children$Keys.applyKeys(Children.java:1551)
-	at org.openide.nodes.Children$Keys.setKeys(Children.java:1495)
-	at org.openide.nodes.AsynchChildren.run(AsynchChildren.java:194)
-	at org.openide.util.RequestProcessor$Task.run(RequestProcessor.java:1418)
-	at org.openide.util.RequestProcessor$Processor.run(RequestProcessor.java:1960)
 Diagnostic information
 Input arguments:
 	-Djdk.home=/usr/lib/jvm/java-6-sun-1.6.0.22
@@ -97,13 +75,13 @@ Input arguments:
 	-Dnetbeans.logger.console=true
 	-ea
 	-XX:+HeapDumpOnOutOfMemoryError
-	-XX:HeapDumpPath=/home/edwin/NetBeansProjects/Classeur/FileBrowserSuite/FileService/../build/testuserdir/var/log/heapdump.hprof
+	-XX:HeapDumpPath=/home/edwin/NetBeansProjects/Classeur/FileBrowserSuite/FolderViewer/../build/testuserdir/var/log/heapdump.hprof
 Compiler: HotSpot 64-Bit Server Compiler
 Heap memory usage: initial 31.4MB maximum 448.0MB
 Non heap memory usage: initial 23.2MB maximum 132.0MB
-Garbage collector: PS Scavenge (Collections=5 Total time spent=0s)
+Garbage collector: PS Scavenge (Collections=6 Total time spent=0s)
 Garbage collector: PS MarkSweep (Collections=0 Total time spent=0s)
-Classes: loaded=3959 total loaded=3959 unloaded 0
+Classes: loaded=3859 total loaded=3859 unloaded 0
 INFO [org.netbeans.core.ui.warmup.DiagnosticTask]: Total memory 2,106,302,464
 INFO [null]: Total physical memory 2,106,302,464
 WARNING [org.openide.filesystems.Ordering]: Not all children in Menu/Window/ marked with the position attribute: [FolderViewerAction.shadow], but some are: [org-netbeans-core-windows-actions-GlobalPropertiesAction.shadow, Output, SwitchToRecentDocumentAction.shadow, ProgressListAction.shadow, Separator3.instance, CloseWindowAction.shadow, MaximizeWindowAction.shadow, org-netbeans-core-windows-actions-UndockAction.shadow, Separator4.instance, CloneDocumentAction.shadow, CloseAllDocumentsAction.shadow, CloseAllButThisAction.shadow, DocumentsAction.shadow, Separator5.instance, org-netbeans-core-windows-actions-ResetWindowsAction.shadow]
