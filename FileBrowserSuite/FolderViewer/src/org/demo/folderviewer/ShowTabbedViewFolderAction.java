@@ -21,6 +21,8 @@ displayName = "#CTL_ShowTabbedViewFolderAction")
 public final class ShowTabbedViewFolderAction implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
-        // TODO implement action body
+        FolderViewerTopComponent folderView=FolderViewerTopComponent.findInstance();
+        
+        folderView.setTabbedViewMode();
     }
 }

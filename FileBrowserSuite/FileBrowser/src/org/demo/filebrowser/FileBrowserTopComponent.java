@@ -2,54 +2,43 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.demo.folderviewer;
+package org.demo.filebrowser;
 
 import java.util.List;
 import java.util.logging.Logger;
 import javax.swing.Action;
-import javax.swing.JScrollPane;
-import javax.swing.SwingUtilities;
-import org.demo.fileservice.Folder;
+import org.openide.util.LookupEvent;
 import org.openide.util.NbBundle;
 import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
 //import org.openide.util.ImageUtilities;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.explorer.ExplorerManager;
-import org.openide.explorer.view.BeanTreeView;
-import org.openide.explorer.view.ListView;
-import org.openide.nodes.Children;
+import org.openide.explorer.view.IconView;
+import org.openide.util.LookupListener;
 import org.openide.util.Utilities;
 
 /**
  * Top component which displays something.
  */
-@ConvertAsProperties(dtd = "-//org.demo.folderviewer//FolderViewer//EN",
+@ConvertAsProperties(dtd = "-//org.demo.filebrowser//FileBrowser//EN",
 autostore = false)
-public final class FolderViewerTopComponent extends TopComponent implements ExplorerManager.Provider {
+public final class FileBrowserTopComponent extends TopComponent implements LookupListener {
 
-    private static ExplorerManager em = new ExplorerManager();
-    private static FolderViewerTopComponent instance;
+    private ExplorerManager em=new ExplorerManager();
+    
+    private static FileBrowserTopComponent instance;
     /** path to the icon used by the component and its open action */
 //    static final String ICON_PATH = "SET/PATH/TO/ICON/HERE";
-    private static final String PREFERRED_ID = "FolderViewerTopComponent";
+    private static final String PREFERRED_ID = "FileBrowserTopComponent";
 
-    public FolderViewerTopComponent() {
+    public FileBrowserTopComponent() {
         initComponents();
         initToolbar();
-        setName(NbBundle.getMessage(FolderViewerTopComponent.class, "CTL_FolderViewerTopComponent"));
-        setToolTipText(NbBundle.getMessage(FolderViewerTopComponent.class, "HINT_FolderViewerTopComponent"));
+        setName(NbBundle.getMessage(FileBrowserTopComponent.class, "CTL_FileBrowserTopComponent"));
+        setToolTipText(NbBundle.getMessage(FileBrowserTopComponent.class, "HINT_FileBrowserTopComponent"));
 //        setIcon(ImageUtilities.loadImage(ICON_PATH, true));
-        
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                FolderNode rootNode=new FolderNode(Children.create(new FolderChildFactory(new Folder("//home//edwin//Documents")), true));
-                rootNode.setDisplayName("root");
-                em.setRootContext(rootNode);
-            }
-        });
-        
+
     }
 
     /** This method is called from within the constructor to
@@ -60,53 +49,47 @@ public final class FolderViewerTopComponent extends TopComponent implements Expl
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        folderViewToolbar = new javax.swing.JToolBar();
-        folderViewPanel = new javax.swing.JPanel();
-        jScrollPane1 = new BeanTreeView();
+        jScrollPane1 = new IconView();
+        fileViewToolbar = new javax.swing.JToolBar();
 
         setLayout(new java.awt.BorderLayout());
+        add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
-        folderViewToolbar.setFloatable(false);
-        folderViewToolbar.setRollover(true);
-        add(folderViewToolbar, java.awt.BorderLayout.NORTH);
-
-        folderViewPanel.setLayout(new java.awt.BorderLayout());
-        folderViewPanel.add(jScrollPane1, java.awt.BorderLayout.CENTER);
-
-        add(folderViewPanel, java.awt.BorderLayout.CENTER);
+        fileViewToolbar.setFloatable(false);
+        fileViewToolbar.setRollover(true);
+        add(fileViewToolbar, java.awt.BorderLayout.NORTH);
     }// </editor-fold>//GEN-END:initComponents
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel folderViewPanel;
-    private javax.swing.JToolBar folderViewToolbar;
+    private javax.swing.JToolBar fileViewToolbar;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
-
     /**
      * Gets default instance. Do not use directly: reserved for *.settings files only,
      * i.e. deserialization routines; otherwise you could get a non-deserialized instance.
      * To obtain the singleton instance, use {@link #findInstance}.
      */
-    public static synchronized FolderViewerTopComponent getDefault() {
+    public static synchronized FileBrowserTopComponent getDefault() {
         if (instance == null) {
-            instance = new FolderViewerTopComponent();
+            instance = new FileBrowserTopComponent();
         }
         return instance;
     }
 
     /**
-     * Obtain the FolderViewerTopComponent instance. Never call {@link #getDefault} directly!
+     * Obtain the FileBrowserTopComponent instance. Never call {@link #getDefault} directly!
      */
-    public static synchronized FolderViewerTopComponent findInstance() {
+    public static synchronized FileBrowserTopComponent findInstance() {
         TopComponent win = WindowManager.getDefault().findTopComponent(PREFERRED_ID);
         if (win == null) {
-            Logger.getLogger(FolderViewerTopComponent.class.getName()).warning(
+            Logger.getLogger(FileBrowserTopComponent.class.getName()).warning(
                     "Cannot find " + PREFERRED_ID + " component. It will not be located properly in the window system.");
             return getDefault();
         }
-        if (win instanceof FolderViewerTopComponent) {
-            return (FolderViewerTopComponent) win;
+        if (win instanceof FileBrowserTopComponent) {
+            return (FileBrowserTopComponent) win;
         }
-        Logger.getLogger(FolderViewerTopComponent.class.getName()).warning(
+        Logger.getLogger(FileBrowserTopComponent.class.getName()).warning(
                 "There seem to be multiple components with the '" + PREFERRED_ID
                 + "' ID. That is a potential source of errors and unexpected behavior.");
         return getDefault();
@@ -153,29 +136,14 @@ public final class FolderViewerTopComponent extends TopComponent implements Expl
     }
 
     @Override
-    public ExplorerManager getExplorerManager() {
-        return em;
+    public void resultChanged(LookupEvent ev) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    private void setViewMode(JScrollPane sp){
-        folderViewPanel.remove(jScrollPane1);
-        jScrollPane1=sp;
-        folderViewPanel.add(jScrollPane1, java.awt.BorderLayout.CENTER);
-    }
-    
-    public void setTreeViewMode() {
-        setViewMode(new BeanTreeView());
-    }
-    
-    
-    private void initToolbar(){
-        List<? extends Action> alist = Utilities.actionsForPath("Toolbars/FolderViewToolbar");
+    private void initToolbar() {
+        List<? extends Action> alist = Utilities.actionsForPath("Toolbars/FileViewToolbar");
         for (Action action : alist) {
-            this.folderViewToolbar.add(action);
+            this.fileViewToolbar.add(action);
         }
-    }
-
-    public void setTabbedViewMode() {
-        setViewMode(new ListView());
     }
 }
