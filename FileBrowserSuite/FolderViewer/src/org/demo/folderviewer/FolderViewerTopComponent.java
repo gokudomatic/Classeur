@@ -16,6 +16,7 @@ import org.openide.windows.WindowManager;
 //import org.openide.util.ImageUtilities;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.explorer.ExplorerManager;
+import org.openide.explorer.ExplorerUtils;
 import org.openide.explorer.view.BeanTreeView;
 import org.openide.explorer.view.ListView;
 import org.openide.nodes.Children;
@@ -40,6 +41,7 @@ public final class FolderViewerTopComponent extends TopComponent implements Expl
         setName(NbBundle.getMessage(FolderViewerTopComponent.class, "CTL_FolderViewerTopComponent"));
         setToolTipText(NbBundle.getMessage(FolderViewerTopComponent.class, "HINT_FolderViewerTopComponent"));
 //        setIcon(ImageUtilities.loadImage(ICON_PATH, true));
+        associateLookup(ExplorerUtils.createLookup(em, this.getActionMap()));        
         
         SwingUtilities.invokeLater(new Runnable() {
             @Override

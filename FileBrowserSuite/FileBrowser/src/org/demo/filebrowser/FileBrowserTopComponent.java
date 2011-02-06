@@ -4,9 +4,12 @@
  */
 package org.demo.filebrowser;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.swing.Action;
+import javax.swing.SwingUtilities;
+import org.demo.fileservice.Folder;
 import org.openide.util.LookupEvent;
 import org.openide.util.NbBundle;
 import org.openide.windows.TopComponent;
@@ -15,7 +18,9 @@ import org.openide.windows.WindowManager;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.explorer.ExplorerManager;
 import org.openide.explorer.view.IconView;
+import org.openide.util.Lookup;
 import org.openide.util.LookupListener;
+import org.openide.util.RequestProcessor;
 import org.openide.util.Utilities;
 
 /**
@@ -26,7 +31,7 @@ autostore = false)
 public final class FileBrowserTopComponent extends TopComponent implements LookupListener {
 
     private ExplorerManager em=new ExplorerManager();
-    
+    private Lookup.Result result = null;
     private static FileBrowserTopComponent instance;
     /** path to the icon used by the component and its open action */
 //    static final String ICON_PATH = "SET/PATH/TO/ICON/HERE";
@@ -102,12 +107,25 @@ public final class FileBrowserTopComponent extends TopComponent implements Looku
 
     @Override
     public void componentOpened() {
-        // TODO add custom code on component opening
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                TopComponent tc = WindowManager.getDefault().findTopComponent("FolderViewerTopComponent");
+                if (tc == null) {
+                    // XXX: message box?
+                    return ;
+                }
+                result = tc.getLookup().lookupResult(Folder.class);
+                result.addLookupListener(FileBrowserTopComponent.this);
+                resultChanged(new LookupEvent(result));
+            }
+        });
     }
 
     @Override
     public void componentClosed() {
-        // TODO add custom code on component closing
+        result.removeLookupListener(this);
+        result = null;
     }
 
     void writeProperties(java.util.Properties p) {
@@ -137,7 +155,13 @@ public final class FileBrowserTopComponent extends TopComponent implements Looku
 
     @Override
     public void resultChanged(LookupEvent ev) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Lookup.Result r = (Lookup.Result) ev.getSource();
+        Collection<Folder> coll = r.allInstances();
+        if (!coll.isEmpty()) {
+            System.out.println("received something");
+        } else {
+            
+        }
     }
 
     private void initToolbar() {
