@@ -163,6 +163,7 @@ public final class FolderViewerTopComponent extends TopComponent implements Expl
         folderViewPanel.remove(jScrollPane1);
         jScrollPane1=sp;
         folderViewPanel.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+        folderViewPanel.validate();
     }
     
     public void setTreeViewMode() {

@@ -44,4 +44,15 @@ public class Folder extends File {
         }
         return result;
     }
+    
+    public List<File> getFiles() {
+        List<File> result = new ArrayList<File>();
+        for (File subitem : this.listFiles()) {
+            if (subitem.isFile()) {
+                result.add(subitem);
+            }
+        }
+        return result;
+    }    
+    
 }

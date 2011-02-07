@@ -18,9 +18,11 @@ import org.openide.windows.WindowManager;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.explorer.ExplorerManager;
 import org.openide.explorer.view.IconView;
+import org.openide.nodes.AbstractNode;
+import org.openide.nodes.Children;
+import org.openide.nodes.Node;
 import org.openide.util.Lookup;
 import org.openide.util.LookupListener;
-import org.openide.util.RequestProcessor;
 import org.openide.util.Utilities;
 
 /**
@@ -30,6 +32,7 @@ import org.openide.util.Utilities;
 autostore = false)
 public final class FileBrowserTopComponent extends TopComponent implements LookupListener {
 
+    private Folder currentFolder=null;
     private ExplorerManager em=new ExplorerManager();
     private Lookup.Result result = null;
     private static FileBrowserTopComponent instance;
@@ -43,7 +46,7 @@ public final class FileBrowserTopComponent extends TopComponent implements Looku
         setName(NbBundle.getMessage(FileBrowserTopComponent.class, "CTL_FileBrowserTopComponent"));
         setToolTipText(NbBundle.getMessage(FileBrowserTopComponent.class, "HINT_FileBrowserTopComponent"));
 //        setIcon(ImageUtilities.loadImage(ICON_PATH, true));
-
+        em.setRootContext(Node.EMPTY);
     }
 
     /** This method is called from within the constructor to
@@ -158,7 +161,8 @@ public final class FileBrowserTopComponent extends TopComponent implements Looku
         Lookup.Result r = (Lookup.Result) ev.getSource();
         Collection<Folder> coll = r.allInstances();
         if (!coll.isEmpty()) {
-            System.out.println("received something");
+            currentFolder=coll.iterator().next();
+            refreshFolder();
         } else {
             
         }
@@ -169,5 +173,10 @@ public final class FileBrowserTopComponent extends TopComponent implements Looku
         for (Action action : alist) {
             this.fileViewToolbar.add(action);
         }
+    }
+
+    private void refreshFolder() {
+        
+        em.setRootContext(new AbstractNode(Children.create(null, true)));
     }
 }
