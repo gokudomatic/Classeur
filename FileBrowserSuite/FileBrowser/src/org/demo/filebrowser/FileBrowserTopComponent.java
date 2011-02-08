@@ -164,7 +164,7 @@ public final class FileBrowserTopComponent extends TopComponent implements Looku
             currentFolder=coll.iterator().next();
             refreshFolder();
         } else {
-            
+            currentFolder=null;
         }
     }
 
@@ -177,6 +177,6 @@ public final class FileBrowserTopComponent extends TopComponent implements Looku
 
     private void refreshFolder() {
         
-        em.setRootContext(new AbstractNode(Children.create(null, true)));
+        //em.setRootContext(new AbstractNode(Children.create(null, true)));
     }
 }
