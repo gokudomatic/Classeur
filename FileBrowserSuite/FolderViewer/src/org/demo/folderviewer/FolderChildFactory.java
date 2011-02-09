@@ -44,21 +44,23 @@ public class FolderChildFactory extends ChildFactory<Folder> {
         File[] children = key.listFiles();
 
         List<Folder> subfolders = new ArrayList<Folder>();
-        for (File subitem : children) {
-            if (subitem.isDirectory()) {
-                subfolders.add(new Folder(subitem));
+        if (children != null) {
+            for (File subitem : children) {
+                if (subitem.isDirectory()) {
+                    subfolders.add(new Folder(subitem));
+                }
             }
         }
         Node node;
         if (subfolders.size() > 0) {
-            node = new FolderNode(Children.create(new FolderChildFactory(subfolders), true),Lookups.singleton(key));
+            node = new FolderNode(Children.create(new FolderChildFactory(subfolders), true), Lookups.singleton(key));
         } else {
-            node=new FolderNode(Children.LEAF,Lookups.singleton(key));
+            node = new FolderNode(Children.LEAF, Lookups.singleton(key));
         }
 
         node.setDisplayName(key.getName());
         node.setShortDescription(key.getAbsolutePath());
-        
+
         return node;
     }
 }

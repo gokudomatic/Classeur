@@ -46,7 +46,7 @@ public final class FileBrowserTopComponent extends TopComponent implements Looku
         setName(NbBundle.getMessage(FileBrowserTopComponent.class, "CTL_FileBrowserTopComponent"));
         setToolTipText(NbBundle.getMessage(FileBrowserTopComponent.class, "HINT_FileBrowserTopComponent"));
 //        setIcon(ImageUtilities.loadImage(ICON_PATH, true));
-        em.setRootContext(Node.EMPTY);
+        em.setRootContext(new AbstractNode(Children.LEAF));
     }
 
     /** This method is called from within the constructor to
