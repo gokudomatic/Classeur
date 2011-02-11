@@ -6,6 +6,7 @@ package org.demo.folderviewer;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.demo.fileservice.Folder;
 import org.openide.nodes.ChildFactory;
@@ -32,9 +33,7 @@ public class FolderChildFactory extends ChildFactory<Folder> {
 
     @Override
     protected boolean createKeys(List<Folder> toPopulate) {
-        for (Folder file : src) {
-            toPopulate.add(file);
-        }
+        toPopulate.addAll(src);
         return true;
     }
 

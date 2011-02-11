@@ -20,7 +20,6 @@ import org.openide.explorer.ExplorerManager;
 import org.openide.explorer.view.IconView;
 import org.openide.nodes.AbstractNode;
 import org.openide.nodes.Children;
-import org.openide.nodes.Node;
 import org.openide.util.Lookup;
 import org.openide.util.LookupListener;
 import org.openide.util.Utilities;
@@ -30,10 +29,10 @@ import org.openide.util.Utilities;
  */
 @ConvertAsProperties(dtd = "-//org.demo.filebrowser//FileBrowser//EN",
 autostore = false)
-public final class FileBrowserTopComponent extends TopComponent implements LookupListener {
+public final class FileBrowserTopComponent extends TopComponent implements LookupListener, ExplorerManager.Provider {
 
-    private Folder currentFolder=null;
-    private ExplorerManager em=new ExplorerManager();
+    private Folder currentFolder = null;
+    private ExplorerManager em = new ExplorerManager();
     private Lookup.Result result = null;
     private static FileBrowserTopComponent instance;
     /** path to the icon used by the component and its open action */
@@ -67,11 +66,11 @@ public final class FileBrowserTopComponent extends TopComponent implements Looku
         fileViewToolbar.setRollover(true);
         add(fileViewToolbar, java.awt.BorderLayout.NORTH);
     }// </editor-fold>//GEN-END:initComponents
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToolBar fileViewToolbar;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
     /**
      * Gets default instance. Do not use directly: reserved for *.settings files only,
      * i.e. deserialization routines; otherwise you could get a non-deserialized instance.
@@ -110,13 +109,14 @@ public final class FileBrowserTopComponent extends TopComponent implements Looku
 
     @Override
     public void componentOpened() {
-        SwingUtilities.invokeLater(new Runnable() {
+        SwingUtilities.invokeLater(new Runnable()  {
+
             @Override
             public void run() {
                 TopComponent tc = WindowManager.getDefault().findTopComponent("FolderViewerTopComponent");
                 if (tc == null) {
                     // XXX: message box?
-                    return ;
+                    return;
                 }
                 result = tc.getLookup().lookupResult(Folder.class);
                 result.addLookupListener(FileBrowserTopComponent.this);
@@ -161,11 +161,11 @@ public final class FileBrowserTopComponent extends TopComponent implements Looku
         Lookup.Result r = (Lookup.Result) ev.getSource();
         Collection<Folder> coll = r.allInstances();
         if (!coll.isEmpty()) {
-            currentFolder=coll.iterator().next();
-            refreshFolder();
+            currentFolder = coll.iterator().next();
         } else {
-            currentFolder=null;
+            currentFolder = null;
         }
+        refreshFolder();
     }
 
     private void initToolbar() {
@@ -176,7 +176,17 @@ public final class FileBrowserTopComponent extends TopComponent implements Looku
     }
 
     private void refreshFolder() {
-        
-        //em.setRootContext(new AbstractNode(Children.create(null, true)));
+        SwingUtilities.invokeLater(new Runnable()  {
+
+            @Override
+            public void run() {
+                em.setRootContext(new AbstractNode(Children.create(new FileNode.FileNodeChildren(currentFolder), true)));
+            }
+        });
+    }
+
+    @Override
+    public ExplorerManager getExplorerManager() {
+        return em;
     }
 }
