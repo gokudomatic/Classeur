@@ -43,27 +43,28 @@ public class FileNode extends AbstractNode {
         private List<File> src = null;
 
         public FileNodeChildren(Folder src) {
-            this.src=Arrays.asList(src.listFiles(new CustomFileFilter()));
+            if (src != null) {
+                this.src = Arrays.asList(src.listFiles(new CustomFileFilter()));
+            }
         }
 
         @Override
         protected boolean createKeys(List<File> toPopulate) {
             System.out.println("------------------");
-            toPopulate.addAll(src);
+            if (src != null) {
+                toPopulate.addAll(src);
+            }
             System.out.println(this.src);
             return true;
         }
 
         @Override
         protected Node createNodeForKey(File key) {
-            Node node=new FileNode(Children.LEAF, Lookups.singleton(key));
+            Node node = new FileNode(Children.LEAF, Lookups.singleton(key));
             node.setDisplayName(key.getName());
             node.setShortDescription(key.getName());
-            
+
             return node;
         }
-
-        
-        
     }
 }
