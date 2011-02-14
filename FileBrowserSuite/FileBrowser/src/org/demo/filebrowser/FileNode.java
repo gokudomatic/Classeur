@@ -22,12 +22,11 @@ import org.openide.util.lookup.Lookups;
  */
 public class FileNode extends AbstractNode {
 
-    public FileNode(Children children, Lookup lookup) {
-        super(children, lookup);
-    }
-
-    public FileNode(Children children) {
-        super(children);
+    private final File key;
+    
+    public FileNode(File key) {
+        super(Children.LEAF, Lookups.singleton(key));
+        this.key=key;
     }
 
     private static final class CustomFileFilter implements FileFilter {
@@ -44,7 +43,10 @@ public class FileNode extends AbstractNode {
 
         public FileNodeChildren(Folder src) {
             if (src != null) {
-                this.src = Arrays.asList(src.listFiles(new CustomFileFilter()));
+                final File[] listFiles = src.listFiles(new CustomFileFilter());
+                if (listFiles != null) {
+                    this.src = Arrays.asList(listFiles);
+                }
             }
         }
 
@@ -60,7 +62,7 @@ public class FileNode extends AbstractNode {
 
         @Override
         protected Node createNodeForKey(File key) {
-            Node node = new FileNode(Children.LEAF, Lookups.singleton(key));
+            Node node = new FileNode(key);
             node.setDisplayName(key.getName());
             node.setShortDescription(key.getName());
 
