@@ -6,9 +6,10 @@ package org.demo.filebrowser.explorer.view;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.io.File;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
+import javax.swing.UIManager;
 import org.openide.explorer.view.ListView;
 import org.openide.explorer.view.Visualizer;
 import org.openide.nodes.Node;
@@ -26,16 +27,25 @@ public class CustomListView extends ListView {
 
         @Override
         public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-            
-            Node node=Visualizer.findNode(value);
-            File file=node.getLookup().lookup(File.class);
-            ListViewPanel cell=new ListViewPanel(file);
-            cell.setBackground(Color.CYAN);
-            if(isSelected){
-                cell.setBackground(Color.YELLOW);
+
+            Node node = Visualizer.findNode(value);
+
+            JLabel label = new JLabel(node.getDisplayName());
+            label.setOpaque(true);
+                label.setBackground(new Color(236, 243, 254));
+            if (isSelected) {
+                label.setBackground(Color.YELLOW);
             }
-            return cell;
-            
+            return label;
+
+//            File file=node.getLookup().lookup(File.class);
+//            ListViewPanel cell=new ListViewPanel(file);
+//            cell.setBackground(Color.CYAN);
+//            if(isSelected){
+//                cell.setBackground(Color.YELLOW);
+//            }
+//            return cell;
+
         }
     }
     private JList jList;
@@ -53,7 +63,7 @@ public class CustomListView extends ListView {
     @Override
     public void setBackground(Color bg) {
         super.setBackground(bg);
-        if(jList!=null){
+        if (jList != null) {
             jList.setBackground(bg);
         }
     }
@@ -61,7 +71,7 @@ public class CustomListView extends ListView {
     @Override
     public void setForeground(Color fg) {
         super.setForeground(fg);
-        if(jList!=null){
+        if (jList != null) {
             jList.setForeground(fg);
         }
     }
@@ -69,7 +79,7 @@ public class CustomListView extends ListView {
     @Override
     public void setOpaque(boolean isOpaque) {
         super.setOpaque(isOpaque);
-        if(jList!=null){
+        if (jList != null) {
             jList.setOpaque(isOpaque);
         }
     }
