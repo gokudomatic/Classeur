@@ -9,7 +9,6 @@ import java.awt.Component;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
-import javax.swing.UIManager;
 import org.openide.explorer.view.ListView;
 import org.openide.explorer.view.Visualizer;
 import org.openide.nodes.Node;
@@ -30,7 +29,7 @@ public class CustomListView extends ListView {
 
             Node node = Visualizer.findNode(value);
 
-            JLabel label = new JLabel(node.getDisplayName());
+            ListViewPanel label = new ListViewPanel(node.getDisplayName());
             label.setOpaque(true);
                 label.setBackground(new Color(236, 243, 254));
             if (isSelected) {

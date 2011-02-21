@@ -20,9 +20,9 @@ import java.io.File;
 public class ListViewPanel extends javax.swing.JPanel {
 
     /** Creates new form ListViewPanel */
-    public ListViewPanel(File file) {
+    public ListViewPanel(String caption) {
         initComponents();
-        actionNameLabel.setText(file.getName());
+        actionNameLabel.setText(caption);
     }
 
     /** This method is called from within the constructor to
