@@ -38,6 +38,7 @@ public class ListViewPanel extends javax.swing.JPanel {
 
         setLayout(new java.awt.BorderLayout());
 
+        actionNameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         actionNameLabel.setText(org.openide.util.NbBundle.getMessage(ListViewPanel.class, "ListViewPanel.actionNameLabel.text")); // NOI18N
         add(actionNameLabel, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents

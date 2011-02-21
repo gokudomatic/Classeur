@@ -6,7 +6,6 @@ package org.demo.filebrowser.explorer.view;
 
 import java.awt.Color;
 import java.awt.Component;
-import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
 import org.openide.explorer.view.ListView;
@@ -55,6 +54,8 @@ public class CustomListView extends ListView {
         jList.setOpaque(true);
         jList.setBackground(getBackground());
         jList.setForeground(getForeground());
+        jList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
+        
         jList.setCellRenderer(new ListCellRendererImpl());
         return jList;
     }
