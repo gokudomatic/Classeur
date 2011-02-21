@@ -55,6 +55,7 @@ public class CustomListView extends ListView {
         jList.setBackground(getBackground());
         jList.setForeground(getForeground());
         jList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
+        jList.setVisibleRowCount(-1);
         
         jList.setCellRenderer(new ListCellRendererImpl());
         return jList;
