@@ -20,6 +20,7 @@ import java.awt.image.BufferedImage;
 import java.text.BreakIterator;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import javax.swing.ToolTipManager;
 
 /**
  *
@@ -27,6 +28,9 @@ import javax.swing.SwingUtilities;
  */
 public class ListViewPanel extends javax.swing.JPanel {
 
+    private final int width=128;
+    private final int labelHeight=20;
+    
     /** Creates new form ListViewPanel */
     public ListViewPanel(String caption) {
         initComponents();
@@ -49,14 +53,15 @@ public class ListViewPanel extends javax.swing.JPanel {
         setLayout(new java.awt.BorderLayout());
 
         label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label.setLabelFor(imagePane);
         label.setText(org.openide.util.NbBundle.getMessage(ListViewPanel.class, "ListViewPanel.label.text")); // NOI18N
         label.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        label.setPreferredSize(new java.awt.Dimension(64, 20));
+        label.setPreferredSize(new java.awt.Dimension(width,labelHeight));
         label.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         add(label, java.awt.BorderLayout.SOUTH);
 
         imagePane.setOpaque(false);
-        imagePane.setPreferredSize(new java.awt.Dimension(64, 32));
+        imagePane.setPreferredSize(new java.awt.Dimension(width,32));
         add(imagePane, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables

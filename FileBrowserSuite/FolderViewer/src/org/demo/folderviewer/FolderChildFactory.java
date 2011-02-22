@@ -5,6 +5,7 @@
 package org.demo.folderviewer;
 
 import java.io.File;
+import java.io.FileFilter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,14 +41,18 @@ public class FolderChildFactory extends ChildFactory<Folder> {
     @Override
     protected Node createNodeForKey(Folder key) {
 
-        File[] children = key.listFiles();
+        File[] children = key.listFiles(new FileFilter() {
+
+            @Override
+            public boolean accept(File pathname) {
+                return pathname.isDirectory();
+            }
+        });
 
         List<Folder> subfolders = new ArrayList<Folder>();
         if (children != null) {
             for (File subitem : children) {
-                if (subitem.isDirectory()) {
                     subfolders.add(new Folder(subitem));
-                }
             }
         }
         Node node;

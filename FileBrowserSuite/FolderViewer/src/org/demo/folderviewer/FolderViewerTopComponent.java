@@ -46,8 +46,8 @@ public final class FolderViewerTopComponent extends TopComponent implements Expl
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                FolderNode rootNode=new FolderNode(Children.create(new FolderChildFactory(new Folder("C://")), true));
-                //FolderNode rootNode=new FolderNode(Children.create(new FolderChildFactory(new Folder("//home//edwin//Documents")), true));
+                //FolderNode rootNode=new FolderNode(Children.create(new FolderChildFactory(new Folder("C://")), true));
+                FolderNode rootNode=new FolderNode(Children.create(new FolderChildFactory(new Folder("//home//edwin")), true));
                 rootNode.setDisplayName("root");
                 em.setRootContext(rootNode);
             }

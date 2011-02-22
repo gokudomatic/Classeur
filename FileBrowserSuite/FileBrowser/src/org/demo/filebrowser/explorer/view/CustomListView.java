@@ -9,6 +9,7 @@ import java.awt.Component;
 import java.awt.image.BufferedImage;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
+import javax.swing.ToolTipManager;
 import org.openide.explorer.view.ListView;
 import org.openide.explorer.view.Visualizer;
 import org.openide.nodes.Node;
