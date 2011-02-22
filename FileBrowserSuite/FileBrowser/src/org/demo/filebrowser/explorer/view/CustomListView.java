@@ -6,11 +6,13 @@ package org.demo.filebrowser.explorer.view;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.image.BufferedImage;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
 import org.openide.explorer.view.ListView;
 import org.openide.explorer.view.Visualizer;
 import org.openide.nodes.Node;
+import org.openide.util.ImageUtilities;
 
 /**
  *
@@ -29,8 +31,12 @@ public class CustomListView extends ListView {
             Node node = Visualizer.findNode(value);
 
             ListViewPanel label = new ListViewPanel(node.getDisplayName());
+
+            label.setImage(
+                    ImageUtilities.loadImage("org/demo/filebrowser/icons/file.png", true));
+
             label.setOpaque(true);
-                label.setBackground(new Color(236, 243, 254));
+            label.setBackground(new Color(236, 243, 254));
             if (isSelected) {
                 label.setBackground(Color.YELLOW);
             }
@@ -56,7 +62,7 @@ public class CustomListView extends ListView {
         jList.setForeground(getForeground());
         jList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
         jList.setVisibleRowCount(-1);
-        
+
         jList.setCellRenderer(new ListCellRendererImpl());
         return jList;
     }

@@ -8,10 +8,14 @@
  *
  * Created on 14 févr. 2011, 17:46:11
  */
-
 package org.demo.filebrowser.explorer.view;
 
-import java.io.File;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Insets;
+import java.awt.image.BufferedImage;
+import javax.swing.JPanel;
 
 /**
  *
@@ -22,7 +26,7 @@ public class ListViewPanel extends javax.swing.JPanel {
     /** Creates new form ListViewPanel */
     public ListViewPanel(String caption) {
         initComponents();
-        actionNameLabel.setText(caption);
+        label.setText(caption);
     }
 
     /** This method is called from within the constructor to
@@ -34,18 +38,114 @@ public class ListViewPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        actionNameLabel = new javax.swing.JLabel();
+        label = new javax.swing.JLabel();
+        imagePane = new ImagePane();
 
         setLayout(new java.awt.BorderLayout());
 
-        actionNameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        actionNameLabel.setText(org.openide.util.NbBundle.getMessage(ListViewPanel.class, "ListViewPanel.actionNameLabel.text")); // NOI18N
-        add(actionNameLabel, java.awt.BorderLayout.CENTER);
+        label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label.setText(org.openide.util.NbBundle.getMessage(ListViewPanel.class, "ListViewPanel.label.text")); // NOI18N
+        label.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        label.setPreferredSize(new java.awt.Dimension(64, 20));
+        label.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        add(label, java.awt.BorderLayout.SOUTH);
+
+        imagePane.setOpaque(false);
+        imagePane.setPreferredSize(new java.awt.Dimension(64, 32));
+        add(imagePane, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel actionNameLabel;
+    private javax.swing.JPanel imagePane;
+    private javax.swing.JLabel label;
     // End of variables declaration//GEN-END:variables
 
+    /** set the text for this component to display
+     * if the value of text is null or empty string, nothing is displayed.
+     * @param text a string to display
+     */
+    public void setText(String text) {
+        label.setText(text);
+    }
+    
+    /** Returns the text string that the label displays.
+     * @return a String
+     */
+    public String getText() {
+        return label.getText();
+    }    
+    
+    /** set the image for this component to display
+     * if the value of image is null or empty string, nothing is displayed.
+     * @param image the image to display
+     */
+    public void setImage(BufferedImage image) {
+        ((ImagePane)imagePane).setImage(image);
+    }    
+    
+    public void setImageRescale(double width, double height) {
+        ((ImagePane)imagePane).imageRescale(width,height);
+    }    
+    
+    /** A component for the parent class to render an image */
+    private class ImagePane extends JPanel {
+
+        /** an image for this component */
+        private BufferedImage image;
+        /** the scale with for this component. */
+        private double scaleWidth = 1.0;
+        /** the scaleHeight for this component. */
+        private double scaleHeight = 1.0;
+
+        /** Constructs a <code>ImagePane</code> */
+        public ImagePane() {
+        }
+
+        /** set the image for this component to display
+         * if the value of image is null or empty string, nothing is displayed.
+         * @param image the image to display
+         */
+        public void setImage(BufferedImage image) {
+            this.image = image;
+        }
+
+        /** set the image rescale
+         * @param width the width to which to scale the image.
+         * @param height the height to which to scale the image.
+         */
+        public void imageRescale(double width, double height) {
+            this.scaleWidth = width;
+            this.scaleHeight = height;
+        }
+
+        /** invoked to draw this component
+         * @param g the Graphics context in which to paint
+         */
+        @Override
+        public void paintComponent(Graphics g) {
+            super.paintComponent(g);    // paint background
+
+            if (image == null) {
+                return;
+            }
+
+            Graphics2D g2 = (Graphics2D) g;
+
+            double w = image.getWidth() * scaleWidth;
+            double h = image.getHeight() * scaleHeight;
+
+            Dimension dim = getSize();
+            double x = 0;
+            double y = 0;
+
+            if (dim.getWidth() > w) {
+                x = (dim.getWidth() - w) / 2;
+            }
+
+            if (dim.getHeight() > h) {
+                y = (dim.getHeight() - h) / 2;
+            }
+
+            g2.drawImage(image, (int) x, (int) y, (int) w, (int) h, this);
+        }
+    }
 }
