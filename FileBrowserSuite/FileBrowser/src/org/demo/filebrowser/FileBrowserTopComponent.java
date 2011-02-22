@@ -60,6 +60,8 @@ public final class FileBrowserTopComponent extends TopComponent implements Looku
         fileViewToolbar = new javax.swing.JToolBar();
 
         setLayout(new java.awt.BorderLayout());
+
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
         add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
         fileViewToolbar.setFloatable(false);

@@ -13,7 +13,6 @@ import org.openide.nodes.AbstractNode;
 import org.openide.nodes.ChildFactory;
 import org.openide.nodes.Children;
 import org.openide.nodes.Node;
-import org.openide.util.Lookup;
 import org.openide.util.lookup.Lookups;
 
 /**
@@ -52,11 +51,9 @@ public class FileNode extends AbstractNode {
 
         @Override
         protected boolean createKeys(List<File> toPopulate) {
-            System.out.println("------------------");
             if (src != null) {
                 toPopulate.addAll(src);
             }
-            System.out.println(this.src);
             return true;
         }
 

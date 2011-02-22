@@ -22,6 +22,8 @@ public class CustomListView extends ListView {
 
     private static class ListCellRendererImpl implements ListCellRenderer {
 
+        private static final BufferedImage defaultIcon = (BufferedImage) ImageUtilities.loadImage("org/demo/filebrowser/icons/file.png", true);
+
         public ListCellRendererImpl() {
         }
 
@@ -33,12 +35,15 @@ public class CustomListView extends ListView {
             ListViewPanel label = new ListViewPanel(node.getDisplayName());
 
             label.setImage(
-                    ImageUtilities.loadImage("org/demo/filebrowser/icons/file.png", true));
+                    defaultIcon);
 
-            label.setOpaque(true);
-            label.setBackground(new Color(236, 243, 254));
             if (isSelected) {
-                label.setBackground(Color.YELLOW);
+                label.setOpaque(true);
+                label.setBackground(new Color(10, 36, 106));
+                label.setForeground(Color.WHITE);
+            } else {
+                label.setOpaque(false);
+                label.setForeground(Color.BLACK);
             }
             return label;
 

@@ -10,12 +10,16 @@
  */
 package org.demo.filebrowser.explorer.view;
 
+import java.awt.Color;
+import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Insets;
 import java.awt.image.BufferedImage;
+import java.text.BreakIterator;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -41,6 +45,7 @@ public class ListViewPanel extends javax.swing.JPanel {
         label = new javax.swing.JLabel();
         imagePane = new ImagePane();
 
+        setBorder(javax.swing.BorderFactory.createEmptyBorder(6, 6, 6, 6));
         setLayout(new java.awt.BorderLayout());
 
         label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -64,28 +69,79 @@ public class ListViewPanel extends javax.swing.JPanel {
      * @param text a string to display
      */
     public void setText(String text) {
-        label.setText(text);
+	FontMetrics fm = label.getFontMetrics(label.getFont());
+	Container container = label.getParent();
+	int containerWidth = container.getWidth();
+ 
+	BreakIterator boundary = BreakIterator.getWordInstance();
+	boundary.setText(text);
+ 
+	StringBuffer trial = new StringBuffer();
+	StringBuilder real = new StringBuilder("<html>");
+ 
+	int start = boundary.first();
+	for (int end = boundary.next(); end != BreakIterator.DONE;
+		start = end, end = boundary.next()) {
+		String word = text.substring(start,end);
+		trial.append(word);
+		int trialWidth = SwingUtilities.computeStringWidth(fm,
+			trial.toString());
+		if (trialWidth > containerWidth) {
+			trial = new StringBuffer(word);
+			real.append("<br>");
+		}
+		real.append(word);
+	}
+ 
+	real.append("</html>");        
+        
+        
+        label.setText(real.toString());
     }
-    
+
+    @Override
+    public void setBackground(Color bg) {
+        super.setBackground(bg);
+        if (label != null) {
+            label.setBackground(bg);
+        }
+    }
+
+    @Override
+    public void setForeground(Color fg) {
+        super.setForeground(fg);
+        if (label != null) {
+            label.setForeground(fg);
+        }
+    }
+
+    @Override
+    public void setOpaque(boolean isOpaque) {
+        super.setOpaque(false);
+        if (label != null) {
+            label.setOpaque(isOpaque);
+        }
+    }
+
     /** Returns the text string that the label displays.
      * @return a String
      */
     public String getText() {
         return label.getText();
-    }    
-    
+    }
+
     /** set the image for this component to display
      * if the value of image is null or empty string, nothing is displayed.
      * @param image the image to display
      */
     public void setImage(BufferedImage image) {
-        ((ImagePane)imagePane).setImage(image);
-    }    
-    
+        ((ImagePane) imagePane).setImage(image);
+    }
+
     public void setImageRescale(double width, double height) {
-        ((ImagePane)imagePane).imageRescale(width,height);
-    }    
-    
+        ((ImagePane) imagePane).imageRescale(width, height);
+    }
+
     /** A component for the parent class to render an image */
     private class ImagePane extends JPanel {
 
