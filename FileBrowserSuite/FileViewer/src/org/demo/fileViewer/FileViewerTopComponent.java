@@ -2,53 +2,46 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.demo.filebrowser;
+package org.demo.fileViewer;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.logging.Logger;
-import javax.swing.Action;
 import javax.swing.SwingUtilities;
-import org.demo.fileservice.Folder;
+import org.demo.fileservice.BrowserFile;
 import org.openide.util.LookupEvent;
 import org.openide.util.NbBundle;
 import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
 //import org.openide.util.ImageUtilities;
 import org.netbeans.api.settings.ConvertAsProperties;
-import org.openide.explorer.ExplorerManager;
-import org.openide.explorer.ExplorerUtils;
-import org.openide.explorer.view.ListView;
-import org.openide.nodes.AbstractNode;
-import org.openide.nodes.Children;
 import org.openide.util.Lookup;
 import org.openide.util.LookupListener;
-import org.openide.util.Utilities;
+import org.openide.util.lookup.AbstractLookup;
+import org.openide.util.lookup.InstanceContent;
 
 /**
  * Top component which displays something.
  */
-@ConvertAsProperties(dtd = "-//org.demo.filebrowser//FileBrowser//EN",
+@ConvertAsProperties(dtd = "-//org.demo.fileViewer//FileViewer//EN",
 autostore = false)
-public final class FileBrowserTopComponent extends TopComponent implements LookupListener, ExplorerManager.Provider {
+public final class FileViewerTopComponent extends TopComponent implements LookupListener {
 
-    private Folder currentFolder = null;
-    private ExplorerManager em = new ExplorerManager();
-    private Lookup.Result result = null;
-    private static FileBrowserTopComponent instance;
+    private static FileViewerTopComponent instance;
     /** path to the icon used by the component and its open action */
 //    static final String ICON_PATH = "SET/PATH/TO/ICON/HERE";
-    private static final String PREFERRED_ID = "FileBrowserTopComponent";
-
-    public FileBrowserTopComponent() {
+    private static final String PREFERRED_ID = "FileViewerTopComponent";
+    private Lookup.Result result = null;
+    private BrowserFile currentFile=null;
+    private final InstanceContent content;
+    
+    public FileViewerTopComponent() {
         initComponents();
-        initToolbar();
-        setName(NbBundle.getMessage(FileBrowserTopComponent.class, "CTL_FileBrowserTopComponent"));
-        setToolTipText(NbBundle.getMessage(FileBrowserTopComponent.class, "HINT_FileBrowserTopComponent"));
+        setName(NbBundle.getMessage(FileViewerTopComponent.class, "CTL_FileViewerTopComponent"));
+        setToolTipText(NbBundle.getMessage(FileViewerTopComponent.class, "HINT_FileViewerTopComponent"));
 //        setIcon(ImageUtilities.loadImage(ICON_PATH, true));
-        associateLookup(ExplorerUtils.createLookup(em, this.getActionMap())); 
         
-        em.setRootContext(new AbstractNode(Children.LEAF));
+        content = new InstanceContent();
+        associateLookup(new AbstractLookup(content));
     }
 
     /** This method is called from within the constructor to
@@ -59,49 +52,46 @@ public final class FileBrowserTopComponent extends TopComponent implements Looku
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new ListView();
-        fileViewToolbar = new javax.swing.JToolBar();
-
-        setLayout(new java.awt.BorderLayout());
-
-        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
-        add(jScrollPane1, java.awt.BorderLayout.CENTER);
-
-        fileViewToolbar.setFloatable(false);
-        fileViewToolbar.setRollover(true);
-        add(fileViewToolbar, java.awt.BorderLayout.NORTH);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
     }// </editor-fold>//GEN-END:initComponents
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToolBar fileViewToolbar;
-    private javax.swing.JScrollPane jScrollPane1;
-    // End of variables declaration//GEN-END:variables
 
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // End of variables declaration//GEN-END:variables
     /**
      * Gets default instance. Do not use directly: reserved for *.settings files only,
      * i.e. deserialization routines; otherwise you could get a non-deserialized instance.
      * To obtain the singleton instance, use {@link #findInstance}.
      */
-    public static synchronized FileBrowserTopComponent getDefault() {
+    public static synchronized FileViewerTopComponent getDefault() {
         if (instance == null) {
-            instance = new FileBrowserTopComponent();
+            instance = new FileViewerTopComponent();
         }
         return instance;
     }
 
     /**
-     * Obtain the FileBrowserTopComponent instance. Never call {@link #getDefault} directly!
+     * Obtain the FileViewerTopComponent instance. Never call {@link #getDefault} directly!
      */
-    public static synchronized FileBrowserTopComponent findInstance() {
+    public static synchronized FileViewerTopComponent findInstance() {
         TopComponent win = WindowManager.getDefault().findTopComponent(PREFERRED_ID);
         if (win == null) {
-            Logger.getLogger(FileBrowserTopComponent.class.getName()).warning(
+            Logger.getLogger(FileViewerTopComponent.class.getName()).warning(
                     "Cannot find " + PREFERRED_ID + " component. It will not be located properly in the window system.");
             return getDefault();
         }
-        if (win instanceof FileBrowserTopComponent) {
-            return (FileBrowserTopComponent) win;
+        if (win instanceof FileViewerTopComponent) {
+            return (FileViewerTopComponent) win;
         }
-        Logger.getLogger(FileBrowserTopComponent.class.getName()).warning(
+        Logger.getLogger(FileViewerTopComponent.class.getName()).warning(
                 "There seem to be multiple components with the '" + PREFERRED_ID
                 + "' ID. That is a potential source of errors and unexpected behavior.");
         return getDefault();
@@ -118,13 +108,13 @@ public final class FileBrowserTopComponent extends TopComponent implements Looku
 
             @Override
             public void run() {
-                TopComponent tc = WindowManager.getDefault().findTopComponent("FolderViewerTopComponent");
+                TopComponent tc = WindowManager.getDefault().findTopComponent("FileViewerTopComponent");
                 if (tc == null) {
                     // XXX: message box?
                     return;
                 }
-                result = tc.getLookup().lookupResult(Folder.class);
-                result.addLookupListener(FileBrowserTopComponent.this);
+                result = tc.getLookup().lookupResult(BrowserFile.class);
+                result.addLookupListener(FileViewerTopComponent.this);
                 resultChanged(new LookupEvent(result));
             }
         });
@@ -163,35 +153,16 @@ public final class FileBrowserTopComponent extends TopComponent implements Looku
 
     @Override
     public void resultChanged(LookupEvent ev) {
+        System.out.println("a");
         Lookup.Result r = (Lookup.Result) ev.getSource();
-        Collection<Folder> coll = r.allInstances();
+        Collection<BrowserFile> coll = r.allInstances();
         if (!coll.isEmpty()) {
-            currentFolder = coll.iterator().next();
+            currentFile = coll.iterator().next();
+            System.out.println(currentFile.getAbsolutePath());
         } else {
-            currentFolder = null;
+            currentFile = null;
         }
-        refreshFolder();
-    }
-
-    private void initToolbar() {
-        List<? extends Action> alist = Utilities.actionsForPath("Toolbars/FileViewToolbar");
-        for (Action action : alist) {
-            this.fileViewToolbar.add(action);
-        }
-    }
-
-    private void refreshFolder() {
-        SwingUtilities.invokeLater(new Runnable()  {
-
-            @Override
-            public void run() {
-                em.setRootContext(new AbstractNode(Children.create(new FileNode.FileNodeChildren(currentFolder), true)));
-            }
-        });
-    }
-
-    @Override
-    public ExplorerManager getExplorerManager() {
-        return em;
+        // TODO show file
+        
     }
 }

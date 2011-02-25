@@ -6,8 +6,10 @@ package org.demo.filebrowser;
 
 import java.io.File;
 import java.io.FileFilter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.demo.fileservice.BrowserFile;
 import org.demo.fileservice.Folder;
 import org.openide.nodes.AbstractNode;
 import org.openide.nodes.ChildFactory;
@@ -21,9 +23,9 @@ import org.openide.util.lookup.Lookups;
  */
 public class FileNode extends AbstractNode {
 
-    private final File key;
+    private final BrowserFile key;
     
-    public FileNode(File key) {
+    public FileNode(BrowserFile key) {
         super(Children.LEAF, Lookups.singleton(key));
         this.key=key;
     }
@@ -36,21 +38,24 @@ public class FileNode extends AbstractNode {
         }
     };
 
-    public static class FileNodeChildren extends ChildFactory<File> {
+    public static class FileNodeChildren extends ChildFactory<BrowserFile> {
 
-        private List<File> src = null;
+        private List<BrowserFile> src = null;
 
         public FileNodeChildren(Folder src) {
             if (src != null) {
                 final File[] listFiles = src.listFiles(new CustomFileFilter());
                 if (listFiles != null) {
-                    this.src = Arrays.asList(listFiles);
+                    this.src=new ArrayList<BrowserFile>();
+                    for (File file : listFiles) {
+                        this.src.add(new BrowserFile(file));
+                    }
                 }
             }
         }
 
         @Override
-        protected boolean createKeys(List<File> toPopulate) {
+        protected boolean createKeys(List<BrowserFile> toPopulate) {
             if (src != null) {
                 toPopulate.addAll(src);
             }
@@ -58,7 +63,7 @@ public class FileNode extends AbstractNode {
         }
 
         @Override
-        protected Node createNodeForKey(File key) {
+        protected Node createNodeForKey(BrowserFile key) {
             Node node = new FileNode(key);
             node.setDisplayName(key.getName());
             node.setShortDescription(key.getName());

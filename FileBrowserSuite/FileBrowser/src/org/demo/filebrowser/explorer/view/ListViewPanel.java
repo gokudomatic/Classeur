@@ -20,11 +20,6 @@ import java.awt.image.BufferedImage;
 import java.text.BreakIterator;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
-import javax.swing.text.MutableAttributeSet;
-import javax.swing.text.SimpleAttributeSet;
-import javax.swing.text.Style;
-import javax.swing.text.StyleConstants;
-import javax.swing.text.StyledDocument;
 
 /**
  *
@@ -34,14 +29,14 @@ public class ListViewPanel extends javax.swing.JPanel {
 
     private final int width=128;
     
-    private Style style;
+    //private Style style;
     
     /** Creates new form ListViewPanel */
     public ListViewPanel(String caption) {
         initComponents();
         label.setText(caption);
-        style=label.addStyle(null, null);
-        label.setLogicalStyle(style);
+        //style=label.addStyle(null, null);
+        //label.setLogicalStyle(style);
     }
 
     /** This method is called from within the constructor to
@@ -54,7 +49,7 @@ public class ListViewPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         imagePane = new ImagePane();
-        label = new javax.swing.JTextPane();
+        label = new javax.swing.JLabel();
 
         setBorder(javax.swing.BorderFactory.createEmptyBorder(6, 6, 6, 6));
         setLayout(new java.awt.BorderLayout());
@@ -63,21 +58,14 @@ public class ListViewPanel extends javax.swing.JPanel {
         imagePane.setPreferredSize(new java.awt.Dimension(width,32));
         add(imagePane, java.awt.BorderLayout.CENTER);
 
-        label.setBorder(null);
+        label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label.setText(org.openide.util.NbBundle.getMessage(ListViewPanel.class, "ListViewPanel.label.text")); // NOI18N
-        label.setOpaque(false);
-        label.setPreferredSize(new java.awt.Dimension(width,20));
-        {
-            StyledDocument doc = label.getStyledDocument();		
-            MutableAttributeSet center = new SimpleAttributeSet();		
-            StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
-            doc.setParagraphAttributes(0, 0, center, true);
-        }
-        add(label, java.awt.BorderLayout.SOUTH);
+        label.setPreferredSize(new java.awt.Dimension(width,14));
+        add(label, java.awt.BorderLayout.PAGE_END);
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel imagePane;
-    private javax.swing.JTextPane label;
+    private javax.swing.JLabel label;
     // End of variables declaration//GEN-END:variables
 
     /** set the text for this component to display
@@ -93,9 +81,10 @@ public class ListViewPanel extends javax.swing.JPanel {
 	boundary.setText(text);
  
 	StringBuffer trial = new StringBuffer();
-	StringBuilder real = new StringBuilder("<html>");
+	StringBuilder real = new StringBuilder();
  
 	int start = boundary.first();
+        boolean first=true;
 	for (int end = boundary.next(); end != BreakIterator.DONE;
 		start = end, end = boundary.next()) {
 		String word = text.substring(start,end);
@@ -104,13 +93,15 @@ public class ListViewPanel extends javax.swing.JPanel {
 			trial.toString());
 		if (trialWidth > containerWidth) {
 			trial = new StringBuffer(word);
-			real.append("<br>");
+                        if(first){
+                            first=false;
+                        } else {
+			real.append("\n");
+                        }
 		}
 		real.append(word);
 	}
  
-	real.append("</html>");        
-        
         
         label.setText(real.toString());
     }
@@ -127,9 +118,9 @@ public class ListViewPanel extends javax.swing.JPanel {
     public void setForeground(Color fg) {
         super.setForeground(fg);
         if (label != null) {
-            //label.setForeground(fg);
+            label.setForeground(fg);
             
-            StyleConstants.setForeground(style, fg);
+            //StyleConstants.setForeground(style, fg);
             
         }
     }
