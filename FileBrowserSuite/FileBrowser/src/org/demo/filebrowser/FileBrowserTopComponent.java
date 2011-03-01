@@ -185,7 +185,7 @@ public final class FileBrowserTopComponent extends TopComponent implements Looku
 
             @Override
             public void run() {
-                em.setRootContext(new AbstractNode(Children.create(new FileNode.FileNodeChildren(currentFolder), true)));
+                em.setRootContext(new FileNode(Children.create(new FileNode.FileNodeChildren(currentFolder), true)));
             }
         });
     }

@@ -15,6 +15,7 @@ import org.openide.nodes.AbstractNode;
 import org.openide.nodes.ChildFactory;
 import org.openide.nodes.Children;
 import org.openide.nodes.Node;
+import org.openide.util.Lookup;
 import org.openide.util.lookup.Lookups;
 
 /**
@@ -23,7 +24,11 @@ import org.openide.util.lookup.Lookups;
  */
 public class FileNode extends AbstractNode {
 
-    private final BrowserFile key;
+    private BrowserFile key=null;
+    
+    public FileNode(Children children) {
+        super(children);
+    }    
     
     public FileNode(BrowserFile key) {
         super(Children.LEAF, Lookups.singleton(key));

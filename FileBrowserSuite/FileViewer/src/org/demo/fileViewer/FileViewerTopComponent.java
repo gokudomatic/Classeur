@@ -108,7 +108,7 @@ public final class FileViewerTopComponent extends TopComponent implements Lookup
 
             @Override
             public void run() {
-                TopComponent tc = WindowManager.getDefault().findTopComponent("FileViewerTopComponent");
+                TopComponent tc = WindowManager.getDefault().findTopComponent("FileBrowserTopComponent");
                 if (tc == null) {
                     // XXX: message box?
                     return;
@@ -153,7 +153,6 @@ public final class FileViewerTopComponent extends TopComponent implements Lookup
 
     @Override
     public void resultChanged(LookupEvent ev) {
-        System.out.println("a");
         Lookup.Result r = (Lookup.Result) ev.getSource();
         Collection<BrowserFile> coll = r.allInstances();
         if (!coll.isEmpty()) {
