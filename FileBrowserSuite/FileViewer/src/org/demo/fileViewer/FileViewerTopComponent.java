@@ -4,6 +4,8 @@
  */
 package org.demo.fileViewer;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.util.Collection;
 import java.util.logging.Logger;
 import javax.swing.SwingUtilities;
@@ -14,6 +16,7 @@ import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
 //import org.openide.util.ImageUtilities;
 import org.netbeans.api.settings.ConvertAsProperties;
+import org.openide.util.ImageUtilities;
 import org.openide.util.Lookup;
 import org.openide.util.LookupListener;
 import org.openide.util.lookup.AbstractLookup;
@@ -52,19 +55,26 @@ public final class FileViewerTopComponent extends TopComponent implements Lookup
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        view = new JImagePreviewPanel();
+
+        setLayout(new java.awt.BorderLayout());
+
+        javax.swing.GroupLayout viewLayout = new javax.swing.GroupLayout(view);
+        view.setLayout(viewLayout);
+        viewLayout.setHorizontalGroup(
+            viewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 400, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        viewLayout.setVerticalGroup(
+            viewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 300, Short.MAX_VALUE)
         );
+
+        add(view, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel view;
     // End of variables declaration//GEN-END:variables
     /**
      * Gets default instance. Do not use directly: reserved for *.settings files only,
@@ -158,6 +168,9 @@ public final class FileViewerTopComponent extends TopComponent implements Lookup
         if (!coll.isEmpty()) {
             currentFile = coll.iterator().next();
             System.out.println(currentFile.getAbsolutePath());
+            BufferedImage loadImage = (BufferedImage) ImageUtilities.loadImage(currentFile.getAbsolutePath(),false);
+            System.out.println(currentFile.getAbsolutePath()+" : "+loadImage);
+            ((JImagePreviewPanel)view).setImage(loadImage);
         } else {
             currentFile = null;
         }

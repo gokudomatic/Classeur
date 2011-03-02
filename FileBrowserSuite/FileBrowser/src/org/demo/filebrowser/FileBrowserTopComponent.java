@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.logging.Logger;
 import javax.swing.Action;
 import javax.swing.SwingUtilities;
+import org.demo.filebrowser.explorer.view.CustomListView;
 import org.demo.fileservice.Folder;
 import org.openide.util.LookupEvent;
 import org.openide.util.NbBundle;
@@ -18,7 +19,6 @@ import org.openide.windows.WindowManager;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.explorer.ExplorerManager;
 import org.openide.explorer.ExplorerUtils;
-import org.openide.explorer.view.ListView;
 import org.openide.nodes.AbstractNode;
 import org.openide.nodes.Children;
 import org.openide.util.Lookup;
@@ -59,7 +59,7 @@ public final class FileBrowserTopComponent extends TopComponent implements Looku
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new ListView();
+        jScrollPane1 = new CustomListView();
         fileViewToolbar = new javax.swing.JToolBar();
 
         setLayout(new java.awt.BorderLayout());
