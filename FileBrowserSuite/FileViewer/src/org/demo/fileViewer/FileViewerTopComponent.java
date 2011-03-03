@@ -6,10 +6,13 @@ package org.demo.fileViewer;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.Collection;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.SwingUtilities;
 import org.demo.fileservice.BrowserFile;
+import org.openide.util.Exceptions;
 import org.openide.util.LookupEvent;
 import org.openide.util.NbBundle;
 import org.openide.windows.TopComponent;
@@ -167,9 +170,12 @@ public final class FileViewerTopComponent extends TopComponent implements Lookup
         Collection<BrowserFile> coll = r.allInstances();
         if (!coll.isEmpty()) {
             currentFile = coll.iterator().next();
-            System.out.println(currentFile.getAbsolutePath());
-            BufferedImage loadImage = (BufferedImage) ImageUtilities.loadImage(currentFile.getAbsolutePath(),false);
-            System.out.println(currentFile.getAbsolutePath()+" : "+loadImage);
+            BufferedImage loadImage=null;
+            try {
+                loadImage = (BufferedImage) ImageIO.read(currentFile);
+            } catch (IOException ex) {
+                Exceptions.printStackTrace(ex);
+            }
             ((JImagePreviewPanel)view).setImage(loadImage);
         } else {
             currentFile = null;

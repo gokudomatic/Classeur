@@ -5,10 +5,7 @@
 package org.demo.fileViewer;
 
 import java.awt.Graphics;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import java.awt.image.BufferedImage;
-import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 /**
@@ -17,24 +14,13 @@ import javax.swing.JPanel;
  */
 public class JImagePreviewPanel extends JPanel {
 
-    public JImagePreviewPanel() {
-        /*this.addComponentListener(new ComponentAdapter() {
-        
-        @Override
-        public void componentResized(ComponentEvent e) {
-        super.componentResized(e);
-        
-        }
-        
-        });*/
-    }
-
     public BufferedImage getImage() {
         return image;
     }
 
     public void setImage(BufferedImage image) {
         this.image = image;
+        this.revalidate();
     }
     private BufferedImage image;
 
@@ -43,14 +29,27 @@ public class JImagePreviewPanel extends JPanel {
         super.paintComponent(g);
 
         if (image != null) {
+            final int W0=getWidth();
+            final int H0=getHeight();
 
-            if (g.drawImage(image, 0, 0, this)) {
-                int width = image.getWidth(this);
-                int height = image.getHeight(this);
+            final int imgWidth = image.getWidth(this);
+            final int imgHeight = image.getHeight(this);
 
-                g.drawImage(image, width, 0, width + width / 2, height / 2,
-                        0, 0, width, height, this);
+            int calcWidth;
+            int calcHeight;
+
+            if (imgWidth < W0 && imgHeight < H0) {
+                calcWidth = imgWidth;
+                calcHeight = imgHeight;
+            } else {
+                final float scale = Math.min((float)W0 / (float)imgWidth, (float)H0 / (float)imgHeight);
+                calcWidth = (int)Math.min(imgWidth * scale, W0);
+                calcHeight = (int)Math.min(imgHeight * scale, H0);
             }
+            final int X1 = (W0 - calcWidth) / 2;
+            final int Y1 = (H0 - calcHeight) / 2;
+
+            g.drawImage(image, X1, Y1, calcWidth, calcHeight, this);
         }
     }
 }
