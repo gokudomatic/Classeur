@@ -4,14 +4,13 @@
  */
 package org.demo.fileViewer;
 
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.SwingUtilities;
-import org.demo.fileservice.BrowserFile;
+import org.demo.fileservice.Thumbnail;
 import org.openide.util.Exceptions;
 import org.openide.util.LookupEvent;
 import org.openide.util.NbBundle;
@@ -19,7 +18,10 @@ import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
 //import org.openide.util.ImageUtilities;
 import org.netbeans.api.settings.ConvertAsProperties;
-import org.openide.util.ImageUtilities;
+import org.openide.filesystems.FileObject;
+import org.openide.filesystems.FileUtil;
+import org.openide.filesystems.MIMEResolver;
+import org.openide.loaders.DataObject;
 import org.openide.util.Lookup;
 import org.openide.util.LookupListener;
 import org.openide.util.lookup.AbstractLookup;
@@ -37,15 +39,15 @@ public final class FileViewerTopComponent extends TopComponent implements Lookup
 //    static final String ICON_PATH = "SET/PATH/TO/ICON/HERE";
     private static final String PREFERRED_ID = "FileViewerTopComponent";
     private Lookup.Result result = null;
-    private BrowserFile currentFile=null;
+    private FileObject currentFile = null;
     private final InstanceContent content;
-    
+
     public FileViewerTopComponent() {
         initComponents();
         setName(NbBundle.getMessage(FileViewerTopComponent.class, "CTL_FileViewerTopComponent"));
         setToolTipText(NbBundle.getMessage(FileViewerTopComponent.class, "HINT_FileViewerTopComponent"));
 //        setIcon(ImageUtilities.loadImage(ICON_PATH, true));
-        
+
         content = new InstanceContent();
         associateLookup(new AbstractLookup(content));
     }
@@ -75,10 +77,10 @@ public final class FileViewerTopComponent extends TopComponent implements Lookup
 
         add(view, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel view;
     // End of variables declaration//GEN-END:variables
+
     /**
      * Gets default instance. Do not use directly: reserved for *.settings files only,
      * i.e. deserialization routines; otherwise you could get a non-deserialized instance.
@@ -117,7 +119,7 @@ public final class FileViewerTopComponent extends TopComponent implements Lookup
 
     @Override
     public void componentOpened() {
-        SwingUtilities.invokeLater(new Runnable()  {
+        SwingUtilities.invokeLater(new Runnable() {
 
             @Override
             public void run() {
@@ -126,7 +128,7 @@ public final class FileViewerTopComponent extends TopComponent implements Lookup
                     // XXX: message box?
                     return;
                 }
-                result = tc.getLookup().lookupResult(BrowserFile.class);
+                result = tc.getLookup().lookupResult(FileObject.class);
                 result.addLookupListener(FileViewerTopComponent.this);
                 resultChanged(new LookupEvent(result));
             }
@@ -167,20 +169,23 @@ public final class FileViewerTopComponent extends TopComponent implements Lookup
     @Override
     public void resultChanged(LookupEvent ev) {
         Lookup.Result r = (Lookup.Result) ev.getSource();
-        Collection<BrowserFile> coll = r.allInstances();
+        Collection<FileObject> coll = r.allInstances();
         if (!coll.isEmpty()) {
             currentFile = coll.iterator().next();
-            BufferedImage loadImage=null;
+            BufferedImage loadImage = null;
             try {
-                loadImage = (BufferedImage) ImageIO.read(currentFile);
+                DataObject document = DataObject.find(currentFile);
+                if (document instanceof Thumbnail) {
+                    loadImage = ((Thumbnail) document).getThumbnail();
+                }
             } catch (IOException ex) {
                 Exceptions.printStackTrace(ex);
             }
-            ((JImagePreviewPanel)view).setImage(loadImage);
+            ((JImagePreviewPanel) view).setImage(loadImage);
         } else {
             currentFile = null;
         }
         // TODO show file
-        
+
     }
 }

@@ -7,15 +7,14 @@ package org.demo.filebrowser;
 import java.io.File;
 import java.io.FileFilter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import org.demo.fileservice.BrowserFile;
 import org.demo.fileservice.Folder;
+import org.openide.filesystems.FileObject;
+import org.openide.filesystems.FileUtil;
 import org.openide.nodes.AbstractNode;
 import org.openide.nodes.ChildFactory;
 import org.openide.nodes.Children;
 import org.openide.nodes.Node;
-import org.openide.util.Lookup;
 import org.openide.util.lookup.Lookups;
 
 /**
@@ -24,13 +23,13 @@ import org.openide.util.lookup.Lookups;
  */
 public class FileNode extends AbstractNode {
 
-    private BrowserFile key=null;
+    private FileObject key=null;
     
     public FileNode(Children children) {
         super(children);
     }    
     
-    public FileNode(BrowserFile key) {
+    public FileNode(FileObject key) {
         super(Children.LEAF, Lookups.singleton(key));
         this.key=key;
     }
@@ -43,24 +42,24 @@ public class FileNode extends AbstractNode {
         }
     };
 
-    public static class FileNodeChildren extends ChildFactory<BrowserFile> {
+    public static class FileNodeChildren extends ChildFactory<FileObject> {
 
-        private List<BrowserFile> src = null;
+        private List<FileObject> src = null;
 
         public FileNodeChildren(Folder src) {
             if (src != null) {
                 final File[] listFiles = src.listFiles(new CustomFileFilter());
                 if (listFiles != null) {
-                    this.src=new ArrayList<BrowserFile>();
+                    this.src=new ArrayList<FileObject>();
                     for (File file : listFiles) {
-                        this.src.add(new BrowserFile(file));
+                        this.src.add(FileUtil.toFileObject(file));
                     }
                 }
             }
         }
 
         @Override
-        protected boolean createKeys(List<BrowserFile> toPopulate) {
+        protected boolean createKeys(List<FileObject> toPopulate) {
             if (src != null) {
                 toPopulate.addAll(src);
             }
@@ -68,7 +67,7 @@ public class FileNode extends AbstractNode {
         }
 
         @Override
-        protected Node createNodeForKey(BrowserFile key) {
+        protected Node createNodeForKey(FileObject key) {
             Node node = new FileNode(key);
             node.setDisplayName(key.getName());
             node.setShortDescription(key.getName());

@@ -7,7 +7,6 @@ package org.demo.fileViewer;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 
 /**
  *
@@ -21,7 +20,7 @@ public class JImagePreviewPanel extends JPanel {
 
     public void setImage(BufferedImage image) {
         this.image = image;
-        SwingUtilities.updateComponentTreeUI(this);
+        this.repaint();
     }
     private BufferedImage image;
 
