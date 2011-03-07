@@ -14,15 +14,14 @@ import org.openide.loaders.DataNode;
 import org.openide.loaders.DataObjectExistsException;
 import org.openide.loaders.MultiDataObject;
 import org.openide.loaders.MultiFileLoader;
-import org.openide.nodes.CookieSet;
 import org.openide.nodes.Node;
 import org.openide.nodes.Children;
 import org.openide.util.Exceptions;
 import org.openide.util.Lookup;
 
-public class ImagePngDataObject extends MultiDataObject implements Thumbnail {
+public class ImageJpegDataObject extends MultiDataObject implements Thumbnail {
 
-    public ImagePngDataObject(FileObject pf, MultiFileLoader loader) throws DataObjectExistsException, IOException {
+    public ImageJpegDataObject(FileObject pf, MultiFileLoader loader) throws DataObjectExistsException, IOException {
         super(pf, loader);
 
     }

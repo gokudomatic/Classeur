@@ -69,7 +69,7 @@ public class FileNode extends AbstractNode {
         @Override
         protected Node createNodeForKey(FileObject key) {
             Node node = new FileNode(key);
-            node.setDisplayName(key.getName());
+            node.setDisplayName(key.getNameExt());
             node.setShortDescription(key.getName());
 
             return node;
