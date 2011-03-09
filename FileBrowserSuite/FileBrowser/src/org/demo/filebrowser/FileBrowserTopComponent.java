@@ -10,7 +10,6 @@ import java.util.logging.Logger;
 import javax.swing.Action;
 import javax.swing.SwingUtilities;
 import org.demo.filebrowser.explorer.view.CustomListView;
-import org.demo.fileservice.Folder;
 import org.openide.util.LookupEvent;
 import org.openide.util.NbBundle;
 import org.openide.windows.TopComponent;
@@ -19,6 +18,7 @@ import org.openide.windows.WindowManager;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.explorer.ExplorerManager;
 import org.openide.explorer.ExplorerUtils;
+import org.openide.filesystems.FileObject;
 import org.openide.nodes.AbstractNode;
 import org.openide.nodes.Children;
 import org.openide.util.Lookup;
@@ -32,7 +32,7 @@ import org.openide.util.Utilities;
 autostore = false)
 public final class FileBrowserTopComponent extends TopComponent implements LookupListener, ExplorerManager.Provider {
 
-    private Folder currentFolder = null;
+    private FileObject currentFolder = null;
     private ExplorerManager em = new ExplorerManager();
     private Lookup.Result result = null;
     private static FileBrowserTopComponent instance;
@@ -123,7 +123,7 @@ public final class FileBrowserTopComponent extends TopComponent implements Looku
                     // XXX: message box?
                     return;
                 }
-                result = tc.getLookup().lookupResult(Folder.class);
+                result = tc.getLookup().lookupResult(FileObject.class);
                 result.addLookupListener(FileBrowserTopComponent.this);
                 resultChanged(new LookupEvent(result));
             }
@@ -164,7 +164,7 @@ public final class FileBrowserTopComponent extends TopComponent implements Looku
     @Override
     public void resultChanged(LookupEvent ev) {
         Lookup.Result r = (Lookup.Result) ev.getSource();
-        Collection<Folder> coll = r.allInstances();
+        Collection<FileObject> coll = r.allInstances();
         if (!coll.isEmpty()) {
             currentFolder = coll.iterator().next();
         } else {

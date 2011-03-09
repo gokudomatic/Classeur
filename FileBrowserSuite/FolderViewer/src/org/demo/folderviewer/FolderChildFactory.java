@@ -4,12 +4,11 @@
  */
 package org.demo.folderviewer;
 
-import java.io.File;
-import java.io.FileFilter;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
+import java.util.Enumeration;
 import java.util.List;
-import org.demo.fileservice.Folder;
+import org.openide.filesystems.FileObject;
 import org.openide.nodes.ChildFactory;
 import org.openide.nodes.Children;
 import org.openide.nodes.Node;
@@ -19,51 +18,43 @@ import org.openide.util.lookup.Lookups;
  *
  * @author edwin
  */
-public class FolderChildFactory extends ChildFactory<Folder> {
+public class FolderChildFactory extends ChildFactory<FileObject> {
 
-    private List<Folder> src;
+    private List<FileObject> src;
 
-    public FolderChildFactory(List<Folder> data) {
+    public FolderChildFactory(List<FileObject> data) {
         src = data;
     }
 
-    FolderChildFactory(Folder file) {
-        src = new ArrayList<Folder>();
+    public FolderChildFactory(Enumeration<? extends FileObject> e){
+        src = Collections.list((Enumeration<FileObject>)e);
+    }
+    
+    FolderChildFactory(FileObject file) {
+        src = new ArrayList<FileObject>();
         src.add(file);
     }
 
     @Override
-    protected boolean createKeys(List<Folder> toPopulate) {
+    protected boolean createKeys(List<FileObject> toPopulate) {
         toPopulate.addAll(src);
         return true;
     }
 
+        
     @Override
-    protected Node createNodeForKey(Folder key) {
+    protected Node createNodeForKey(FileObject key) {
 
-        File[] children = key.listFiles(new FileFilter() {
-
-            @Override
-            public boolean accept(File pathname) {
-                return pathname.isDirectory();
-            }
-        });
-
-        List<Folder> subfolders = new ArrayList<Folder>();
-        if (children != null) {
-            for (File subitem : children) {
-                    subfolders.add(new Folder(subitem));
-            }
-        }
+        Enumeration<? extends FileObject> subfolders=key.getFolders(false);
         Node node;
-        if (subfolders.size() > 0) {
+        if (subfolders.hasMoreElements()) {
             node = new FolderNode(Children.create(new FolderChildFactory(subfolders), true), Lookups.singleton(key));
         } else {
             node = new FolderNode(Children.LEAF, Lookups.singleton(key));
         }
 
         node.setDisplayName(key.getName());
-        node.setShortDescription(key.getAbsolutePath());
+        node.setShortDescription(key.getPath());
 
         return node;
     }

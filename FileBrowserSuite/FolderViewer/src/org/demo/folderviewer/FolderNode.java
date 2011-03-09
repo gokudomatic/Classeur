@@ -5,10 +5,12 @@
 package org.demo.folderviewer;
 
 import java.awt.Image;
+import org.openide.filesystems.FileObject;
 import org.openide.nodes.AbstractNode;
 import org.openide.nodes.Children;
 import org.openide.util.ImageUtilities;
 import org.openide.util.Lookup;
+import org.openide.util.lookup.Lookups;
 
 /**
  *
@@ -24,6 +26,12 @@ public class FolderNode extends AbstractNode {
         super(children);
     }
 
+    public static FolderNode getRootNode(FileObject root){
+        FolderNode node=new FolderNode(Children.create(new FolderChildFactory(root.getFolders(false)),true),Lookups.singleton(root));
+        node.setDisplayName(root.getName());
+        return node;
+    }
+    
     @Override
     public Image getOpenedIcon(int type) {
         return ImageUtilities.loadImage("org/demo/folderviewer/icons/folder_open_16.png", true);

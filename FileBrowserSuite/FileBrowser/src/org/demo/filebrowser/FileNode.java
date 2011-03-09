@@ -6,11 +6,10 @@ package org.demo.filebrowser;
 
 import java.io.File;
 import java.io.FileFilter;
-import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Enumeration;
 import java.util.List;
-import org.demo.fileservice.Folder;
 import org.openide.filesystems.FileObject;
-import org.openide.filesystems.FileUtil;
 import org.openide.nodes.AbstractNode;
 import org.openide.nodes.ChildFactory;
 import org.openide.nodes.Children;
@@ -46,15 +45,9 @@ public class FileNode extends AbstractNode {
 
         private List<FileObject> src = null;
 
-        public FileNodeChildren(Folder src) {
+        public FileNodeChildren(FileObject src) {
             if (src != null) {
-                final File[] listFiles = src.listFiles(new CustomFileFilter());
-                if (listFiles != null) {
-                    this.src=new ArrayList<FileObject>();
-                    for (File file : listFiles) {
-                        this.src.add(FileUtil.toFileObject(file));
-                    }
-                }
+                this.src=Collections.list((Enumeration<FileObject>)src.getData(false));
             }
         }
 
