@@ -30,6 +30,16 @@ import org.openide.util.Utilities;
 autostore = false)
 public final class FolderViewerTopComponent extends TopComponent implements ExplorerManager.Provider {
 
+    private String rootFolder = null;
+
+    public String getRootFolder() {
+        return rootFolder;
+    }
+
+    public void setRootFolder(String rootFolder) {
+        this.rootFolder = rootFolder;
+        setRootNode();
+    }
     private static ExplorerManager em = new ExplorerManager();
     private static FolderViewerTopComponent instance;
     /** path to the icon used by the component and its open action */
@@ -42,18 +52,29 @@ public final class FolderViewerTopComponent extends TopComponent implements Expl
         setName(NbBundle.getMessage(FolderViewerTopComponent.class, "CTL_FolderViewerTopComponent"));
         setToolTipText(NbBundle.getMessage(FolderViewerTopComponent.class, "HINT_FolderViewerTopComponent"));
 //        setIcon(ImageUtilities.loadImage(ICON_PATH, true));
-        associateLookup(ExplorerUtils.createLookup(em, this.getActionMap()));        
-        
+        associateLookup(ExplorerUtils.createLookup(em, this.getActionMap()));
+
+        setRootNode();
+
+    }
+
+    private void setRootNode() {
         SwingUtilities.invokeLater(new Runnable() {
+
             @Override
             public void run() {
-                //File root=new File("C://");
-                File root=new File("//home//edwin");
-                FolderNode rootNode=FolderNode.getRootNode(FileUtil.toFileObject(root));
+                FolderNode rootNode;
+                if (rootFolder != null) {
+                    //File root=new File("C://");
+                    //File root=new File("//home//edwin");
+                    File root = new File(rootFolder);
+                    rootNode = FolderNode.getRootNode(FileUtil.toFileObject(root));
+                } else {
+                    rootNode = FolderNode.getEmptyRootNode();
+                }
                 em.setRootContext(rootNode);
             }
         });
-        
     }
 
     /** This method is called from within the constructor to
@@ -135,6 +156,7 @@ public final class FolderViewerTopComponent extends TopComponent implements Expl
         // better to version settings since initial version as advocated at
         // http://wiki.apidesign.org/wiki/PropertyFiles
         p.setProperty("version", "1.0");
+        p.setProperty("rootFolder", rootFolder);
         // TODO store your settings
     }
 
@@ -148,6 +170,7 @@ public final class FolderViewerTopComponent extends TopComponent implements Expl
 
     private void readPropertiesImpl(java.util.Properties p) {
         String version = p.getProperty("version");
+        rootFolder = p.getProperty("rootFolder");
         // TODO read your settings according to their version
     }
 
@@ -161,19 +184,18 @@ public final class FolderViewerTopComponent extends TopComponent implements Expl
         return em;
     }
 
-    private void setViewMode(JScrollPane sp){
+    private void setViewMode(JScrollPane sp) {
         folderViewPanel.remove(jScrollPane1);
-        jScrollPane1=sp;
+        jScrollPane1 = sp;
         folderViewPanel.add(jScrollPane1, java.awt.BorderLayout.CENTER);
         folderViewPanel.validate();
     }
-    
+
     public void setTreeViewMode() {
         setViewMode(new BeanTreeView());
     }
-    
-    
-    private void initToolbar(){
+
+    private void initToolbar() {
         List<? extends Action> alist = Utilities.actionsForPath("Toolbars/FolderViewToolbar");
         for (Action action : alist) {
             this.folderViewToolbar.add(action);
