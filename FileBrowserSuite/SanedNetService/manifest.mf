@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+OpenIDE-Module: org.demo.sanednetservice
+OpenIDE-Module-Layer: org/demo/sanednetservice/layer.xml
+OpenIDE-Module-Localizing-Bundle: org/demo/sanednetservice/Bundle.properties
+OpenIDE-Module-Requires: org.openide.modules.os.Linux
+OpenIDE-Module-Specification-Version: 1.0
+

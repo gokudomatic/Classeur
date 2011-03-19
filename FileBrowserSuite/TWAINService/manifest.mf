@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+OpenIDE-Module: org.demo.twainservice
+OpenIDE-Module-Layer: org/demo/twainservice/layer.xml
+OpenIDE-Module-Localizing-Bundle: org/demo/twainservice/Bundle.properties
+OpenIDE-Module-Requires: org.openide.modules.os.Windows
+OpenIDE-Module-Specification-Version: 1.0
+

@@ -156,7 +156,11 @@ public final class FolderViewerTopComponent extends TopComponent implements Expl
         // better to version settings since initial version as advocated at
         // http://wiki.apidesign.org/wiki/PropertyFiles
         p.setProperty("version", "1.0");
-        p.setProperty("rootFolder", rootFolder);
+        if (rootFolder != null) {
+            p.setProperty("rootFolder", rootFolder);
+        } else {
+            p.setProperty("rootFolder", "");
+        }
         // TODO store your settings
     }
 
@@ -171,6 +175,9 @@ public final class FolderViewerTopComponent extends TopComponent implements Expl
     private void readPropertiesImpl(java.util.Properties p) {
         String version = p.getProperty("version");
         rootFolder = p.getProperty("rootFolder");
+        if("".equals(rootFolder)){
+            rootFolder=null;
+        }
         // TODO read your settings according to their version
     }
 
