@@ -5,15 +5,17 @@
 
 package org.demo.scannerservice;
 
+import org.openide.util.Lookup;
+
 /**
  *
  * @author edwin
  */
 public class ScannerFactory {
 
-    public static ScannerDevice getDevice(){
+    public static ScannerDevice getManager(){
         
-        return null;
+        return Lookup.getDefault().lookup(ScannerDevice.class);
     }
     
 }
