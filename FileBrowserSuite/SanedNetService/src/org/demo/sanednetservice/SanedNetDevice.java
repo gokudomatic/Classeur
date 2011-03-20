@@ -55,7 +55,7 @@ public class SanedNetDevice implements ScannerDevice {
                 }
             }
         });
-
+        t.start();
 
     }
 
