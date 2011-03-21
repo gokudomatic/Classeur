@@ -46,6 +46,7 @@ public class TwainDevice implements ScannerDevice, uk.co.mmscomputing.device.sca
                     scanner.addListener(TwainDevice.this);
                 }
                 try {
+                    scanner.select();
                     scanner.acquire();
                 } catch (ScannerIOException ex) {
                     Logger.getLogger(TwainDevice.class.getName()).log(Level.SEVERE, null, ex);
