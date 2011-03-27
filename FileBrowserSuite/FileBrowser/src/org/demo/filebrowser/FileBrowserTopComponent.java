@@ -23,6 +23,7 @@ import org.openide.nodes.AbstractNode;
 import org.openide.nodes.Children;
 import org.openide.util.Lookup;
 import org.openide.util.LookupListener;
+import org.openide.util.RequestProcessor;
 import org.openide.util.Utilities;
 
 /**
@@ -181,14 +182,17 @@ public final class FileBrowserTopComponent extends TopComponent implements Looku
     }
 
     private void refreshFolder() {
-        SwingUtilities.invokeLater(new Runnable()  {
+        Runnable r=new Runnable()  {
 
             @Override
             public void run() {
                 em.setRootContext(new FileNode(Children.create(new FileNode.FileNodeChildren(currentFolder), true)));
             }
-        });
+        };
+        RP.post(r);
+        
     }
+    private static RequestProcessor RP=new RequestProcessor(FileBrowserTopComponent.class.getCanonicalName(),1);
 
     @Override
     public ExplorerManager getExplorerManager() {

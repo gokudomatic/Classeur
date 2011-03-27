@@ -11,15 +11,11 @@
 package org.demo.filebrowser.explorer.view;
 
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.text.BreakIterator;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 
 /**
  *
@@ -27,16 +23,15 @@ import javax.swing.SwingUtilities;
  */
 public class ListViewPanel extends javax.swing.JPanel {
 
-    private final int width=128;
+    private final int width = 128;
+    private final int labelHeight = 60;
     
     //private Style style;
-    
     /** Creates new form ListViewPanel */
     public ListViewPanel(String caption) {
         initComponents();
+        label.setUI(new MultiLineLabelUI());
         label.setText(caption);
-        //style=label.addStyle(null, null);
-        //label.setLogicalStyle(style);
     }
 
     /** This method is called from within the constructor to
@@ -60,51 +55,16 @@ public class ListViewPanel extends javax.swing.JPanel {
 
         label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label.setText(org.openide.util.NbBundle.getMessage(ListViewPanel.class, "ListViewPanel.label.text")); // NOI18N
-        label.setPreferredSize(new java.awt.Dimension(width,14));
+        label.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        label.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        label.setPreferredSize(new java.awt.Dimension(width,labelHeight));
+        label.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         add(label, java.awt.BorderLayout.PAGE_END);
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel imagePane;
     private javax.swing.JLabel label;
     // End of variables declaration//GEN-END:variables
-
-    /** set the text for this component to display
-     * if the value of text is null or empty string, nothing is displayed.
-     * @param text a string to display
-     */
-    public void setText(String text) {
-	FontMetrics fm = label.getFontMetrics(label.getFont());
-	Container container = label.getParent();
-	int containerWidth = container.getWidth();
- 
-	BreakIterator boundary = BreakIterator.getWordInstance();
-	boundary.setText(text);
- 
-	StringBuffer trial = new StringBuffer();
-	StringBuilder real = new StringBuilder();
- 
-	int start = boundary.first();
-        boolean first=true;
-	for (int end = boundary.next(); end != BreakIterator.DONE;
-		start = end, end = boundary.next()) {
-		String word = text.substring(start,end);
-		trial.append(word);
-		int trialWidth = SwingUtilities.computeStringWidth(fm,
-			trial.toString());
-		if (trialWidth > containerWidth) {
-			trial = new StringBuffer(word);
-                        if(first){
-                            first=false;
-                        } else {
-			real.append("\n");
-                        }
-		}
-		real.append(word);
-	}
- 
-        
-        label.setText(real.toString());
-    }
 
     @Override
     public void setBackground(Color bg) {
@@ -119,9 +79,9 @@ public class ListViewPanel extends javax.swing.JPanel {
         super.setForeground(fg);
         if (label != null) {
             label.setForeground(fg);
-            
+
             //StyleConstants.setForeground(style, fg);
-            
+
         }
     }
 
