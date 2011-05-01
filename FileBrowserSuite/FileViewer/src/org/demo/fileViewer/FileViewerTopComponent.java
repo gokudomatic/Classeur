@@ -8,7 +8,6 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import javax.swing.SwingUtilities;
 import org.demo.fileservice.Thumbnail;
 import org.openide.util.Exceptions;
@@ -19,8 +18,6 @@ import org.openide.windows.WindowManager;
 //import org.openide.util.ImageUtilities;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.filesystems.FileObject;
-import org.openide.filesystems.FileUtil;
-import org.openide.filesystems.MIMEResolver;
 import org.openide.loaders.DataObject;
 import org.openide.util.Lookup;
 import org.openide.util.LookupListener;
@@ -171,6 +168,7 @@ public final class FileViewerTopComponent extends TopComponent implements Lookup
         Lookup.Result r = (Lookup.Result) ev.getSource();
         Collection<FileObject> coll = r.allInstances();
         if (!coll.isEmpty()) {
+
             currentFile = coll.iterator().next();
             BufferedImage loadImage = null;
             try {
@@ -185,7 +183,6 @@ public final class FileViewerTopComponent extends TopComponent implements Lookup
         } else {
             currentFile = null;
         }
-        // TODO show file
 
     }
 }

@@ -5,17 +5,28 @@
 package org.demo.scannergui;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.Enumeration;
+import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import org.demo.scannerservice.ScannerDevice;
 import org.demo.scannerservice.ScannerFactory;
 import org.demo.scannerservice.ScannerListener;
+import org.openide.loaders.DataLoader;
+import org.openide.util.Exceptions;
 import org.openide.util.NbBundle;
 import org.openide.windows.TopComponent;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
+import org.openide.filesystems.FileObject;
+import org.openide.filesystems.FileUtil;
+import org.openide.loaders.DataLoaderPool;
+import org.openide.loaders.DataObject;
+import org.openide.windows.WindowManager;
 
 /**
  * Top component which displays something.
@@ -117,12 +128,32 @@ public final class ScannerFrontendTopComponent extends TopComponent {
 
             @Override
             public void imageAcquired(BufferedImage image) {
-                JDialog d=new JDialog();
-                JLabel l=new JLabel(new ImageIcon(image));
-                d.add(l);
-                d.pack();
-                d.setVisible(true);
-                jButton1.setEnabled(true);
+                try {
+                    TopComponent tc = WindowManager.getDefault().findTopComponent("FolderViewerTopComponent");
+                    if (tc == null) {
+                        // XXX: message box?
+                        return;
+                    }
+                    FileObject folder = tc.getLookup().lookup(FileObject.class);
+                    if(folder==null){
+                        // XXX: message box?
+                        return;
+                    }
+                    
+                    FileObject fo = folder.createData("temp.png");
+                    DataObject f=DataObject.find(fo);
+
+                    System.out.println("class:"+f.getClass().getName());
+                    
+                    JDialog d=new JDialog();
+                    JLabel l=new JLabel(new ImageIcon(image));
+                    d.add(l);
+                    d.pack();
+                    d.setVisible(true);
+                    jButton1.setEnabled(true);
+                } catch (IOException ex) {
+                    Exceptions.printStackTrace(ex);
+                }
             }
         });
         manager.acquire();

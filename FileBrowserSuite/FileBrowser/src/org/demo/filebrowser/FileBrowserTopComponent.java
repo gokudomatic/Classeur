@@ -47,8 +47,8 @@ public final class FileBrowserTopComponent extends TopComponent implements Looku
         setName(NbBundle.getMessage(FileBrowserTopComponent.class, "CTL_FileBrowserTopComponent"));
         setToolTipText(NbBundle.getMessage(FileBrowserTopComponent.class, "HINT_FileBrowserTopComponent"));
 //        setIcon(ImageUtilities.loadImage(ICON_PATH, true));
-        associateLookup(ExplorerUtils.createLookup(em, this.getActionMap())); 
-        
+        associateLookup(ExplorerUtils.createLookup(em, this.getActionMap()));
+
         em.setRootContext(new AbstractNode(Children.LEAF));
     }
 
@@ -115,7 +115,7 @@ public final class FileBrowserTopComponent extends TopComponent implements Looku
 
     @Override
     public void componentOpened() {
-        SwingUtilities.invokeLater(new Runnable()  {
+        SwingUtilities.invokeLater(new Runnable() {
 
             @Override
             public void run() {
@@ -182,17 +182,10 @@ public final class FileBrowserTopComponent extends TopComponent implements Looku
     }
 
     private void refreshFolder() {
-        Runnable r=new Runnable()  {
 
-            @Override
-            public void run() {
-                em.setRootContext(new FileNode(Children.create(new FileNode.FileNodeChildren(currentFolder), true)));
-            }
-        };
-        RP.post(r);
-        
+        em.setRootContext(new FileNode(Children.create(new FileNode.FileNodeChildren(currentFolder), true)));
+
     }
-    private static RequestProcessor RP=new RequestProcessor(FileBrowserTopComponent.class.getCanonicalName(),1);
 
     @Override
     public ExplorerManager getExplorerManager() {
