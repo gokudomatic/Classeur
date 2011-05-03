@@ -12,6 +12,7 @@ import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
 import org.demo.scannerservice.ScannerDevice;
 import org.demo.scannerservice.ScannerFactory;
 import org.demo.scannerservice.ScannerListener;
@@ -127,38 +128,46 @@ public final class ScannerFrontendTopComponent extends TopComponent {
             }
 
             @Override
-            public void imageAcquired(BufferedImage image) {
-                try {
-                    TopComponent tc = WindowManager.getDefault().findTopComponent("FolderViewerTopComponent");
-                    if (tc == null) {
-                        // XXX: message box?
-                        return;
-                    }
-                    FileObject folder = tc.getLookup().lookup(FileObject.class);
-                    if(folder==null){
-                        // XXX: message box?
-                        return;
-                    }
-                    
-                    FileObject fo = folder.createData("temp.png");
-                    DataObject f=DataObject.find(fo);
+            public void imageAcquired(final BufferedImage image) {
 
-                    System.out.println("class:"+f.getClass().getName());
-                    
-                    JDialog d=new JDialog();
-                    JLabel l=new JLabel(new ImageIcon(image));
-                    d.add(l);
-                    d.pack();
-                    d.setVisible(true);
-                    jButton1.setEnabled(true);
-                } catch (IOException ex) {
-                    Exceptions.printStackTrace(ex);
-                }
+                SwingUtilities.invokeLater(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        try {
+                            TopComponent tc = WindowManager.getDefault().findTopComponent("FolderViewerTopComponent");
+                            if (tc == null) {
+                                // XXX: message box?
+                                return;
+                            }
+                            FileObject folder = tc.getLookup().lookup(FileObject.class);
+                            if (folder == null) {
+                                // XXX: message box?
+                                return;
+                            }
+
+                            FileObject fo = folder.createData("temp.png");
+                            DataObject f = DataObject.find(fo);
+
+                            System.out.println("class:" + f.getClass().getName());
+
+                            JDialog d = new JDialog();
+                            JLabel l = new JLabel(new ImageIcon(image));
+                            d.add(l);
+                            d.pack();
+                            d.setVisible(true);
+                            jButton1.setEnabled(true);
+                        } catch (IOException ex) {
+                            Exceptions.printStackTrace(ex);
+                        }
+                    }
+                });
+
+
             }
         });
         manager.acquire();
     }//GEN-LAST:event_jButton1ActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -167,6 +176,7 @@ public final class ScannerFrontendTopComponent extends TopComponent {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
+
     @Override
     public void componentOpened() {
         // TODO add custom code on component opening
