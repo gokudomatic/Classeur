@@ -13,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
+import org.demo.fileservice.DocumentWriter;
 import org.demo.scannerservice.ScannerDevice;
 import org.demo.scannerservice.ScannerFactory;
 import org.demo.scannerservice.ScannerListener;
@@ -151,12 +152,16 @@ public final class ScannerFrontendTopComponent extends TopComponent {
 
                             System.out.println("class:" + f.getClass().getName());
 
-                            JDialog d = new JDialog();
-                            JLabel l = new JLabel(new ImageIcon(image));
-                            d.add(l);
-                            d.pack();
-                            d.setVisible(true);
-                            jButton1.setEnabled(true);
+                            if(f instanceof DocumentWriter){
+                                ((DocumentWriter)f).write(image);
+                            }
+                            
+//                            JDialog d = new JDialog();
+//                            JLabel l = new JLabel(new ImageIcon(image));
+//                            d.add(l);
+//                            d.pack();
+//                            d.setVisible(true);
+//                            jButton1.setEnabled(true);
                         } catch (IOException ex) {
                             Exceptions.printStackTrace(ex);
                         }
