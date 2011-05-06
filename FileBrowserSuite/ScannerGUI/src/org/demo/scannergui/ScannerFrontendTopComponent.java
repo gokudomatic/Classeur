@@ -150,8 +150,6 @@ public final class ScannerFrontendTopComponent extends TopComponent {
                             FileObject fo = folder.createData("temp.png");
                             DataObject f = DataObject.find(fo);
 
-                            System.out.println("class:" + f.getClass().getName());
-
                             if(f instanceof DocumentWriter){
                                 ((DocumentWriter)f).write(image);
                             }
