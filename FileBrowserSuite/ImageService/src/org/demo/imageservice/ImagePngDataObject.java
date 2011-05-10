@@ -19,6 +19,7 @@ import org.openide.util.Lookup;
 
 public class ImagePngDataObject extends MultiDataObject implements Thumbnail,DocumentWriter {
     public static final String EXTENSION = "png";
+    public static final String DESCRIPTION = "Portable Network Graphics";
 
     public ImagePngDataObject(FileObject pf, MultiFileLoader loader) throws DataObjectExistsException, IOException {
         super(pf, loader);
@@ -43,5 +44,10 @@ public class ImagePngDataObject extends MultiDataObject implements Thumbnail,Doc
     @Override
     public void write(BufferedImage source) {
         ImageIOUtils.writeImage(getPrimaryFile(), EXTENSION, source);
+    }
+
+    @Override
+    public String getExtension() {
+        return EXTENSION;
     }
 }

@@ -5,18 +5,19 @@
 package org.demo.scannergui;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Enumeration;
-import java.util.List;
-import javax.swing.ImageIcon;
-import javax.swing.JDialog;
-import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
+import org.demo.core.CentralLookup;
 import org.demo.fileservice.DocumentWriter;
+import org.demo.fileservice.Extension;
+import org.demo.fileservice.ExtensionMap;
 import org.demo.scannerservice.ScannerDevice;
 import org.demo.scannerservice.ScannerFactory;
 import org.demo.scannerservice.ScannerListener;
+import org.netbeans.api.editor.mimelookup.MimeLookup;
 import org.openide.loaders.DataLoader;
 import org.openide.util.Exceptions;
 import org.openide.util.NbBundle;
@@ -26,8 +27,10 @@ import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
 import org.openide.filesystems.FileObject;
 import org.openide.filesystems.FileUtil;
+import org.openide.filesystems.MIMEResolver;
 import org.openide.loaders.DataLoaderPool;
 import org.openide.loaders.DataObject;
+import org.openide.util.Lookup;
 import org.openide.windows.WindowManager;
 
 /**
@@ -49,7 +52,13 @@ public final class ScannerFrontendTopComponent extends TopComponent {
         initComponents();
         setName(NbBundle.getMessage(ScannerFrontendTopComponent.class, "CTL_ScannerFrontendTopComponent"));
         setToolTipText(NbBundle.getMessage(ScannerFrontendTopComponent.class, "HINT_ScannerFrontendTopComponent"));
+        SwingUtilities.invokeLater(new Runnable() {
 
+            @Override
+            public void run() {
+                init();
+            }
+        });
     }
 
     /** This method is called from within the constructor to
@@ -63,8 +72,8 @@ public final class ScannerFrontendTopComponent extends TopComponent {
         jComboBox1 = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox();
-        jButton1 = new javax.swing.JButton();
+        formatsCombobox = new javax.swing.JComboBox();
+        scanBtn = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -73,12 +82,10 @@ public final class ScannerFrontendTopComponent extends TopComponent {
 
         org.openide.awt.Mnemonics.setLocalizedText(jLabel2, org.openide.util.NbBundle.getMessage(ScannerFrontendTopComponent.class, "ScannerFrontendTopComponent.jLabel2.text")); // NOI18N
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        org.openide.awt.Mnemonics.setLocalizedText(jButton1, org.openide.util.NbBundle.getMessage(ScannerFrontendTopComponent.class, "ScannerFrontendTopComponent.jButton1.text")); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        org.openide.awt.Mnemonics.setLocalizedText(scanBtn, org.openide.util.NbBundle.getMessage(ScannerFrontendTopComponent.class, "ScannerFrontendTopComponent.scanBtn.text")); // NOI18N
+        scanBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                scanBtnActionPerformed(evt);
             }
         });
 
@@ -91,11 +98,11 @@ public final class ScannerFrontendTopComponent extends TopComponent {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+                    .addComponent(scanBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
                     .addComponent(jComboBox1, 0, 148, Short.MAX_VALUE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
-                    .addComponent(jComboBox2, 0, 148, Short.MAX_VALUE)
+                    .addComponent(formatsCombobox, 0, 148, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -103,7 +110,7 @@ public final class ScannerFrontendTopComponent extends TopComponent {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
+                .addComponent(scanBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -111,15 +118,15 @@ public final class ScannerFrontendTopComponent extends TopComponent {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(formatsCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        jButton1.setEnabled(false);
+    private void scanBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scanBtnActionPerformed
+        scanBtn.setEnabled(false);
         ScannerDevice manager = ScannerFactory.getManager();
         manager.addListener(new ScannerListener() {
 
@@ -147,19 +154,13 @@ public final class ScannerFrontendTopComponent extends TopComponent {
                                 return;
                             }
 
-                            FileObject fo = folder.createData("temp.png");
+                            FileObject fo = folder.createData("temp."+((Extension)formatsCombobox.getSelectedItem()).getExtension());
                             DataObject f = DataObject.find(fo);
 
                             if(f instanceof DocumentWriter){
                                 ((DocumentWriter)f).write(image);
                             }
                             
-//                            JDialog d = new JDialog();
-//                            JLabel l = new JLabel(new ImageIcon(image));
-//                            d.add(l);
-//                            d.pack();
-//                            d.setVisible(true);
-//                            jButton1.setEnabled(true);
                         } catch (IOException ex) {
                             Exceptions.printStackTrace(ex);
                         }
@@ -170,14 +171,14 @@ public final class ScannerFrontendTopComponent extends TopComponent {
             }
         });
         manager.acquire();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_scanBtnActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox formatsCombobox;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton scanBtn;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -200,5 +201,12 @@ public final class ScannerFrontendTopComponent extends TopComponent {
     void readProperties(java.util.Properties p) {
         String version = p.getProperty("version");
         // TODO read your settings according to their version
+    }
+
+    private void init() {
+        ExtensionMap exts = CentralLookup.getDefault().lookup(ExtensionMap.class);
+        for(Extension extension:exts){
+            formatsCombobox.addItem(extension);
+        }
     }
 }

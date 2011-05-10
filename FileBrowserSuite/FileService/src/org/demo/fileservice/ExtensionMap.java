@@ -4,16 +4,12 @@
  */
 package org.demo.fileservice;
 
-import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 /**
  *
  * @author edwin
  */
-public interface DocumentWriter {
-    
-    public void write(BufferedImage source);
-
-    public String getExtension();
+public class ExtensionMap extends ArrayList<Extension> {
     
 }
