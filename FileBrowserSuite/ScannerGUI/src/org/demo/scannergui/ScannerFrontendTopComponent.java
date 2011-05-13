@@ -41,7 +41,7 @@ autostore = false)
 @TopComponent.Description(preferredID = "ScannerFrontendTopComponent",
 //iconBase="SET/PATH/TO/ICON/HERE", 
 persistenceType = TopComponent.PERSISTENCE_ALWAYS)
-@TopComponent.Registration(mode = "rightSlidingSide", openAtStartup = false)
+@TopComponent.Registration(mode = "rightSlidingSide", openAtStartup = true)
 @ActionID(category = "Window", id = "org.demo.scannergui.ScannerFrontendTopComponent")
 @ActionReference(path = "Menu/Window" /*, position = 333 */)
 @TopComponent.OpenActionRegistration(displayName = "#CTL_ScannerFrontendAction",

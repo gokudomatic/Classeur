@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.2//EN"
+                            "http://www.netbeans.org/dtds/filesystem-1_2.dtd">
+<filesystem>
+    <folder name="xml">
+        <folder name="entities">
+            <folder name="org_demo_scannergui">
+                <file name="ScannerFrontend" url="nbres:/org/netbeans/modules/settings/resources/properties-1_0.dtd">
+                    <!--org.demo.scannergui.ScannerFrontendTopComponent-->
+                    <attr name="hint.originalPublicID" stringvalue="-//org.demo.scannergui//ScannerFrontend//EN"/>
+                </file>
+            </folder>
+        </folder>
+        <folder name="memory">
+            <folder name="org">
+                <folder name="demo">
+                    <folder name="scannergui">
+                        <file name="ScannerFrontendTopComponent">
+                            <!--org.demo.scannergui.ScannerFrontendTopComponent-->
+                            <attr name="settings.providerPath" stringvalue="xml/lookups//org_demo_scannergui/ScannerFrontend.instance"/>
+                        </file>
+                    </folder>
+                </folder>
+            </folder>
+        </folder>
+        <folder name="lookups">
+            <folder name="org_demo_scannergui">
+                <file name="ScannerFrontend.instance">
+                    <!--org.demo.scannergui.ScannerFrontendTopComponent-->
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.create" name="instanceCreate"/>
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.properties" name="settings.convertor"/>
+                    <attr name="settings.instanceClass" stringvalue="org.demo.scannergui.ScannerFrontendTopComponent"/>
+                    <attr name="settings.instanceOf" stringvalue="org.demo.scannergui.ScannerFrontendTopComponent"/>
+                    <attr boolvalue="true" name="xmlproperties.preventStoring"/>
+                </file>
+            </folder>
+        </folder>
+    </folder>
+    <folder name="Menu">
+        <folder name="Window">
+            <file name="org-demo-scannergui-ScannerFrontendTopComponent.shadow">
+                <!--org.demo.scannergui.ScannerFrontendTopComponent-->
+                <attr name="originalFile" stringvalue="Actions/Window/org-demo-scannergui-ScannerFrontendTopComponent.instance"/>
+            </file>
+        </folder>
+    </folder>
+    <folder name="Windows2">
+        <folder name="Components">
+            <file name="ScannerFrontendTopComponent.settings">
+                <!--org.demo.scannergui.ScannerFrontendTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
+<settings version="1.0">
+  <instance class="org.demo.scannergui.ScannerFrontendTopComponent"/>
+</settings>
+]]></file>
+        </folder>
+        <folder name="Modes">
+            <folder name="rightSlidingSide">
+                <file name="ScannerFrontendTopComponent.wstcref">
+                    <!--org.demo.scannergui.ScannerFrontendTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tc-ref PUBLIC "-//NetBeans//DTD Top Component in Mode Properties 2.0//EN" "http://www.netbeans.org/dtds/tc-ref2_0.dtd">
+<tc-ref version="2.0">
+  <tc-id id="ScannerFrontendTopComponent"/>
+  <state opened="false"/>
+</tc-ref>
+]]></file>
+            </folder>
+        </folder>
+    </folder>
+    <folder name="Actions">
+        <folder name="Window">
+            <file name="org-demo-scannergui-ScannerFrontendTopComponent.instance">
+                <!--org.demo.scannergui.ScannerFrontendTopComponent-->
+                <attr
+                    methodvalue="org.openide.windows.TopComponent.openAction" name="instanceCreate"/>
+                <attr name="component" newvalue="org.demo.scannergui.ScannerFrontendTopComponent"/>
+                <attr name="preferredID" stringvalue="ScannerFrontendTopComponent"/>
+                <attr
+                    bundlevalue="org.demo.scannergui.Bundle#CTL_ScannerFrontendAction" name="displayName"/>
+            </file>
+        </folder>
+    </folder>
+</filesystem>
