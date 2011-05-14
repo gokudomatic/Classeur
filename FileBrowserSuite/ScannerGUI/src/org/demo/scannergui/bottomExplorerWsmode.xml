@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <mode version="2.3">
-    <name unique="anonymousMode_1" />
+    <name unique="bottomExplorer" />
   <kind type="view" />
   <state type="joined" />
   <constraints>

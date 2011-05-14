@@ -48,10 +48,10 @@
             <file name="ScannerFrontendTopComponent.settings" url="ScannerFrontendTopComponentSettings.xml"/>
         </folder>
         <folder name="Modes">
-            <folder name="anonymousMode_1">
+            <folder name="bottomExplorer">
                 <file name="ScannerFrontendTopComponent.wstcref" url="ScannerFrontendTopComponentWstcref_1.xml"/>
             </folder>
-            <file name="anonymousMode_1.wsmode" url="anonymousMode_1Wsmode.xml"/>
+            <file name="bottomExplorer.wsmode" url="bottomExplorerWsmode.xml"/>
             <folder name="explorer"/>
         </folder>
     </folder>
