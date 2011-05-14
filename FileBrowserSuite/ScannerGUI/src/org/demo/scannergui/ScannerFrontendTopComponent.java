@@ -6,9 +6,7 @@ package org.demo.scannergui;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Enumeration;
+import java.util.logging.Logger;
 import javax.swing.SwingUtilities;
 import org.demo.core.CentralLookup;
 import org.demo.fileservice.DocumentWriter;
@@ -17,20 +15,12 @@ import org.demo.fileservice.ExtensionMap;
 import org.demo.scannerservice.ScannerDevice;
 import org.demo.scannerservice.ScannerFactory;
 import org.demo.scannerservice.ScannerListener;
-import org.netbeans.api.editor.mimelookup.MimeLookup;
-import org.openide.loaders.DataLoader;
 import org.openide.util.Exceptions;
 import org.openide.util.NbBundle;
 import org.openide.windows.TopComponent;
 import org.netbeans.api.settings.ConvertAsProperties;
-import org.openide.awt.ActionID;
-import org.openide.awt.ActionReference;
 import org.openide.filesystems.FileObject;
-import org.openide.filesystems.FileUtil;
-import org.openide.filesystems.MIMEResolver;
-import org.openide.loaders.DataLoaderPool;
 import org.openide.loaders.DataObject;
-import org.openide.util.Lookup;
 import org.openide.windows.WindowManager;
 
 /**
@@ -38,16 +28,13 @@ import org.openide.windows.WindowManager;
  */
 @ConvertAsProperties(dtd = "-//org.demo.scannergui//ScannerFrontend//EN",
 autostore = false)
-@TopComponent.Description(preferredID = "ScannerFrontendTopComponent",
-//iconBase="SET/PATH/TO/ICON/HERE", 
-persistenceType = TopComponent.PERSISTENCE_ALWAYS)
-@TopComponent.Registration(mode = "rightSlidingSide", openAtStartup = true)
-@ActionID(category = "Window", id = "org.demo.scannergui.ScannerFrontendTopComponent")
-@ActionReference(path = "Menu/Window" /*, position = 333 */)
-@TopComponent.OpenActionRegistration(displayName = "#CTL_ScannerFrontendAction",
-preferredID = "ScannerFrontendTopComponent")
 public final class ScannerFrontendTopComponent extends TopComponent {
 
+    private static ScannerFrontendTopComponent instance;
+    /** path to the icon used by the component and its open action */
+//    static final String ICON_PATH = "SET/PATH/TO/ICON/HERE";
+    private static final String PREFERRED_ID = "ScannerFrontendTopComponent";    
+    
     public ScannerFrontendTopComponent() {
         initComponents();
         setName(NbBundle.getMessage(ScannerFrontendTopComponent.class, "CTL_ScannerFrontendTopComponent"));
@@ -181,6 +168,37 @@ public final class ScannerFrontendTopComponent extends TopComponent {
     private javax.swing.JButton scanBtn;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Gets default instance. Do not use directly: reserved for *.settings files only,
+     * i.e. deserialization routines; otherwise you could get a non-deserialized instance.
+     * To obtain the singleton instance, use {@link #findInstance}.
+     */
+    public static synchronized ScannerFrontendTopComponent getDefault() {
+        if (instance == null) {
+            instance = new ScannerFrontendTopComponent();
+        }
+        return instance;
+    }    
+    
+    /**
+     * Obtain the FileViewerTopComponent instance. Never call {@link #getDefault} directly!
+     */
+    public static synchronized ScannerFrontendTopComponent findInstance() {
+        TopComponent win = WindowManager.getDefault().findTopComponent(PREFERRED_ID);
+        if (win == null) {
+            Logger.getLogger(ScannerFrontendTopComponent.class.getName()).warning(
+                    "Cannot find " + PREFERRED_ID + " component. It will not be located properly in the window system.");
+            return getDefault();
+        }
+        if (win instanceof ScannerFrontendTopComponent) {
+            return (ScannerFrontendTopComponent) win;
+        }
+        Logger.getLogger(ScannerFrontendTopComponent.class.getName()).warning(
+                "There seem to be multiple components with the '" + PREFERRED_ID
+                + "' ID. That is a potential source of errors and unexpected behavior.");
+        return getDefault();
+    }    
+    
     @Override
     public void componentOpened() {
         // TODO add custom code on component opening
