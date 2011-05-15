@@ -2,10 +2,14 @@ package org.demo.sanednetservice;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.event.EventListenerList;
 import org.demo.scannerservice.Parameters;
+import org.demo.scannerservice.Scanner;
 import org.demo.scannerservice.ScannerDevice;
 import org.demo.scannerservice.ScannerListener;
 import uk.org.jsane.JSane_Base.JSane_Base_Device;
@@ -61,7 +65,7 @@ public class SanedNetDevice implements ScannerDevice {
 
     protected void fireScanPerformed(BufferedImage img) {
         final ScannerListener[] list = listeners.getListeners(ScannerListener.class);
-        for(ScannerListener l:list){
+        for (ScannerListener l : list) {
             l.imageAcquired(img);
         }
 
@@ -85,5 +89,44 @@ public class SanedNetDevice implements ScannerDevice {
     @Override
     public void removeListener(ScannerListener listener) {
         listeners.remove(ScannerListener.class, listener);
+    }
+
+    @Override
+    public String getDescription() {
+        return "Sane-net";
+    }
+
+    @Override
+    public String toString() {
+        return getDescription();
+    }
+
+    @Override
+    public Collection<Scanner> getListDevices() {
+        Collection<Scanner> result=new ArrayList<Scanner>();
+        try {
+            JSane_Net_Connection con;
+            con = new JSane_Net_Connection("127.0.0.1",
+                    6566);
+            try {
+                Vector devices = con.getDevices();
+
+                for (Object absDevice : devices) {
+                    JSane_Base_Device device = (JSane_Base_Device) absDevice;
+                    result.add(new SanedNetScanner(device));
+                }
+
+            } finally {
+                con.exit();
+            }
+
+
+        } catch (JSane_Exception ex) {
+            Logger.getLogger(SanedNetDevice.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(SanedNetDevice.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return result;
     }
 }

@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+OpenIDE-Module: org.demo.options
+OpenIDE-Module-Layer: org/demo/options/layer.xml
+OpenIDE-Module-Localizing-Bundle: org/demo/options/Bundle.properties
+OpenIDE-Module-Specification-Version: 1.0
+

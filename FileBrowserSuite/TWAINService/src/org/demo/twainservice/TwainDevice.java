@@ -5,6 +5,7 @@
 package org.demo.twainservice;
 
 import java.awt.image.BufferedImage;
+import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.event.EventListenerList;
@@ -89,4 +90,21 @@ public class TwainDevice implements ScannerDevice, uk.co.mmscomputing.device.sca
             e.printStackTrace();
         }
     }
+
+    @Override
+    public String getDescription() {
+        return "mmsComputing jTwain";
+    }
+
+    @Override
+    public String toString() {
+        return getDescription();
+    }
+
+    @Override
+    public Collection<org.demo.scannerservice.Scanner> getListDevices() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+    
+    
 }
