@@ -13,8 +13,8 @@ import org.demo.scannerservice.ScannerFactory;
 
 final class GeneralScannerOptionsPanel extends javax.swing.JPanel {
 
-    private final DefaultListModel managerListModel=new DefaultListModel();
-    private final DefaultListModel scannerListModel=new DefaultListModel();
+    private final DefaultListModel managerListModel = new DefaultListModel();
+    private final DefaultListModel scannerListModel = new DefaultListModel();
     private final GeneralScannerOptionsOptionsPanelController controller;
 
     GeneralScannerOptionsPanel(GeneralScannerOptionsOptionsPanelController controller) {
@@ -209,7 +209,7 @@ final class GeneralScannerOptionsPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void managerListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_managerListValueChanged
-        updateListScanners((ScannerDevice)managerList.getSelectedValue());
+        updateListScanners((ScannerDevice) managerList.getSelectedValue());
     }//GEN-LAST:event_managerListValueChanged
 
     void load() {
@@ -220,9 +220,9 @@ final class GeneralScannerOptionsPanel extends javax.swing.JPanel {
         // someCheckBox.setSelected(NbPreferences.forModule(GeneralScannerOptionsPanel.class).getBoolean("someFlag", false));
         // or:
         // someTextField.setText(SomeSystemOption.getDefault().getSomeStringProperty());
-        
-        
-        DefaultListModel model=managerListModel;
+
+
+        DefaultListModel model = managerListModel;
         model.removeAllElements();
         Collection<ScannerDevice> managers = ScannerFactory.getManagerList();
         for (ScannerDevice manager : managers) {
@@ -271,8 +271,10 @@ final class GeneralScannerOptionsPanel extends javax.swing.JPanel {
 
     private void updateListScanners(ScannerDevice scannerDevice) {
         scannerListModel.removeAllElements();
-        for (Scanner device : scannerDevice.getListDevices()) {
-            scannerListModel.addElement(device);
+        if (scannerDevice != null) {
+            for (Scanner device : scannerDevice.getListDevices()) {
+                scannerListModel.addElement(device);
+            }
         }
     }
 }
