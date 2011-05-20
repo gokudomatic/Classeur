@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+OpenIDE-Module: org.demo.morenasaneservice
+OpenIDE-Module-Layer: org/demo/morenasaneservice/layer.xml
+OpenIDE-Module-Localizing-Bundle: org/demo/morenasaneservice/Bundle.properties
+OpenIDE-Module-Requires: org.openide.modules.os.Linux
+OpenIDE-Module-Specification-Version: 1.0
+

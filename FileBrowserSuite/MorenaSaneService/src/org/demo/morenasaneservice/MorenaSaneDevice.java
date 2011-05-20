@@ -2,17 +2,22 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.demo.morenaservice;
+package org.demo.morenasaneservice;
 
 import SK.gnome.morena.MorenaSource;
+import SK.gnome.sane.SaneConnection;
+import SK.gnome.sane.SaneException;
+import SK.gnome.sane.SaneSource;
 import SK.gnome.twain.TwainException;
 import SK.gnome.twain.TwainManager;
 import SK.gnome.twain.TwainSource;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.event.EventListenerList;
+import org.demo.morena.MorenaScanner;
 import org.demo.scannerservice.Parameters;
 import org.demo.scannerservice.Scanner;
 import org.demo.scannerservice.ScannerDevice;
@@ -22,10 +27,10 @@ import org.demo.scannerservice.ScannerListener;
  *
  * @author ECO
  */
-public class MorenaTwainDevice implements ScannerDevice {
+public class MorenaSaneDevice implements ScannerDevice {
 
-    private final EventListenerList listeners = new EventListenerList();    
-    
+    private final EventListenerList listeners = new EventListenerList();
+
     @Override
     public void addListener(ScannerListener listener) {
         listeners.add(ScannerListener.class, listener);
@@ -53,28 +58,31 @@ public class MorenaTwainDevice implements ScannerDevice {
 
     @Override
     public String getDescription() {
-        return "Morena Twain Manager";
+        return "Morena Sane Manager";
     }
 
     @Override
     public String toString() {
         return getDescription();
-    }    
-    
+    }
+
     @Override
     public Collection<Scanner> getListDevices() {
         Collection<Scanner> result = new ArrayList<Scanner>();
         try {
-            TwainSource[] listSources = TwainManager.listSources();
-            
-            for (TwainSource twainSource : listSources) {
-                result.add(new MorenaScanner(twainSource));
+
+            SaneConnection conn = SaneConnection.connect("localhost");
+            SaneSource[] listSources = conn.listSources();
+
+            for (MorenaSource src : listSources) {
+                result.add(new MorenaScanner(src));
             }
-        } catch (TwainException ex) {
-            Logger.getLogger(MorenaTwainDevice.class.getName()).log(Level.SEVERE, null, ex);
+
+        } catch (SaneException ex) {
+            Logger.getLogger(MorenaSaneDevice.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(MorenaSaneDevice.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
         return result;
     }
-    
 }

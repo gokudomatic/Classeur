@@ -1,0 +1,63 @@
+Binary Code License Agreement for Morena - Image Acquisition Framework
+(this agreement applies in case you are using both commercial or non-commercial license file)
+
+
+GNOME, LTD. ("GNOME") IS WILLING TO LICENSE THE SOFTWARE IDENTIFIED BELOW TO YOU ONLY UPON
+THE CONDITION THAT YOU ACCEPT ALL OF THE TERMS CONTAINED IN THIS LICENSE AGREEMENT ("AGREEMENT").
+PLEASE READ THE AGREEMENT CAREFULLY. BY DOWNLOADING OR INSTALLING THIS SOFTWARE, YOU ACCEPT THE
+TERMS OF THE AGREEMENT.
+
+DEFINITION
+"Morena" means "Morena - Image Acquisition Framework" in binary form, including libraries,
+example source files, manuals, tutorials and other machine readable materials provided to you
+by Gnome under this agreement. "Programs" mean Java applets and applications intended for end
+users, but not library intended for software developers, using Morena to communicate with image
+acquisition hardware.
+
+1. LICENSE TO USE
+Subject to the terms and conditions of this agreement Gnome grants you a non-exclusive,
+non-transferable, limited license to
+a. use Morena complete and unmodified for the sole purpose of development of your own programs
+   by a single developer in a single organization,
+b. redistribute runtime components of Morena royalty free for the sole purpose of execution
+   of your own Programs by an unlimited number of users. 
+
+2. TECHNICAL SUPPORT
+Gnome is obligated to provide technical support to you in extent of hot-line phone number,
+e-mail address and discussion forum during working time and providing new versions of Morena,
+both for a period of one calendar year since purchase of product or payment of update fees.
+
+3. RESTRICTIONS
+Unless enforcement is prohibited by applicable law, you may not modify, decompile, or reverse
+engineer Morena. 
+
+4. COPYRIGHT AND OWNERSHIP 
+Morena is an intellectual property of Gnome and is protected by copyright.
+
+5. LIMITED WARRANTY
+Software is provided "AS IS" and Gnome makes no warranty as to its use or performance.
+
+6. DISCLAIMER OF WARRANTY
+UNLESS SPECIFIED IN THIS AGREEMENT,  ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND
+WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE,
+OR NON-INFRINGEMENT, ARE DISCLAIMED, EXCEPT TO  THE EXTENT THAT THESE DISCLAIMERS ARE HELD TO BE
+LEGALLY INVALID.
+
+7. LIMITATION OF LIABILITY
+TO THE EXTENT NOT PROHIBITED BY LAW, IN NO EVENT WILL GNOME BE LIABLE FOR ANY LOST REVENUE,
+PROFIT OR DATA, OR FOR SPECIAL, INDIRECT, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER
+CAUSED REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF OR RELATED TO THE USE OF OR INABILITY
+TO USE SOFTWARE, EVEN IF GNOME HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.  In no event
+will Gnome's liability to you exceed the amount paid by you for Software under this Agreement.
+The foregoing limitations will apply even if the above stated warranty
+fails of its essential purpose.
+
+8. TERMINATION.
+This agreement is effective until terminated. You may terminate it at any time by destroying all
+copies of Morena. This agreement will terminate immediately without notice from Gnome if you fail
+to comply with any provision of this agreement. Upon termination, you must destroy all copies of
+Software. 
+
+9. GOVERNING LAW.
+Any action related to this agreement will be governed by the law of Slovak Republic.
+

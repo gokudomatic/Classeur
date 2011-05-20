@@ -3,7 +3,7 @@
     <type>org.netbeans.modules.apisupport.project</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/nb-module-project/3">
-            <code-name-base>org.demo.morenaservice</code-name-base>
+            <code-name-base>org.demo.morena</code-name-base>
             <suite-component/>
             <module-dependencies>
                 <dependency>
@@ -15,7 +15,15 @@
                     </run-dependency>
                 </dependency>
             </module-dependencies>
-            <public-packages/>
+            <public-packages>
+                <package>SK.gnome.capabilities</package>
+                <package>SK.gnome.capabilities.sane</package>
+                <package>SK.gnome.capabilities.twain</package>
+                <package>SK.gnome.morena</package>
+                <package>SK.gnome.sane</package>
+                <package>SK.gnome.twain</package>
+                <package>org.demo.morena</package>
+            </public-packages>
             <class-path-extension>
                 <runtime-relative-path>ext/morena_windows.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/morena_windows.jar</binary-origin>

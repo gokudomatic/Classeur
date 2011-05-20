@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+OpenIDE-Module: org.demo.morenatwainservice
+OpenIDE-Module-Layer: org/demo/morenatwainservice/layer.xml
+OpenIDE-Module-Localizing-Bundle: org/demo/morenatwainservice/Bundle.properties
+OpenIDE-Module-Requires: org.openide.modules.os.Windows
+OpenIDE-Module-Specification-Version: 1.0
+

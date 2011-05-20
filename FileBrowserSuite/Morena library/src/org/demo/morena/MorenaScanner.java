@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.demo.morenaservice;
+package org.demo.morena;
 
-import SK.gnome.twain.TwainSource;
+import SK.gnome.morena.MorenaSource;
 import org.demo.scannerservice.Scanner;
 
 /**
@@ -15,8 +15,8 @@ public class MorenaScanner implements Scanner {
 
     private String name;
     
-    MorenaScanner(TwainSource twainSource) {
-        name=twainSource.toString();
+    public MorenaScanner(MorenaSource src) {
+        name=src.toString();
     }
 
     @Override

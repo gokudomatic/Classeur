@@ -3,7 +3,7 @@
 <filesystem>
     <folder name="Services">
         <folder name="Hidden">
-            <file name="org-demo-morenaservice-MorenaTwainDevice.instance">
+            <file name="org-demo-morenasaneservice-MorenaSaneDevice.instance">
                 <attr name="instanceOf" stringvalue="org.demo.scannerservice.ScannerDevice"/>
             </file>
         </folder>
