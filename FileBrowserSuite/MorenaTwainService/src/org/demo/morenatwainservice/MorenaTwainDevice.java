@@ -13,6 +13,7 @@ import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.event.EventListenerList;
+import org.demo.morena.MorenaScanner;
 import org.demo.scannerservice.Parameters;
 import org.demo.scannerservice.Scanner;
 import org.demo.scannerservice.ScannerDevice;
@@ -65,9 +66,9 @@ public class MorenaTwainDevice implements ScannerDevice {
     public Collection<Scanner> getListDevices() {
         Collection<Scanner> result = new ArrayList<Scanner>();
         try {
-            TwainSource[] listSources = TwainManager.listSources();
+            MorenaSource[] listSources = TwainManager.listSources();
             
-            for (TwainSource twainSource : listSources) {
+            for (MorenaSource twainSource : listSources) {
                 result.add(new MorenaScanner(twainSource));
             }
         } catch (TwainException ex) {
