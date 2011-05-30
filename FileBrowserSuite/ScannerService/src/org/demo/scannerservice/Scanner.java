@@ -9,5 +9,7 @@ package org.demo.scannerservice;
  * @author edwin
  */
 public interface Scanner {
+
+    double[] getSupportedResolutions();
     
 }
