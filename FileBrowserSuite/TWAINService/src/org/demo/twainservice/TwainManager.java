@@ -11,7 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.event.EventListenerList;
 import org.demo.scannerservice.Parameters;
-import org.demo.scannerservice.ScannerDevice;
+import org.demo.scannerservice.ScannerManager;
 import org.demo.scannerservice.ScannerListener;
 import uk.co.mmscomputing.device.scanner.Scanner;
 import uk.co.mmscomputing.device.scanner.ScannerIOException;
@@ -22,7 +22,7 @@ import uk.co.mmscomputing.device.scanner.ScannerIOMetadata.Type;
  *
  * @author edwin
  */
-public class TwainDevice implements ScannerDevice, uk.co.mmscomputing.device.scanner.ScannerListener {
+public class TwainManager implements ScannerManager, uk.co.mmscomputing.device.scanner.ScannerListener {
 
     private static Scanner scanner = null;
     private final EventListenerList listeners = new EventListenerList();
@@ -45,13 +45,13 @@ public class TwainDevice implements ScannerDevice, uk.co.mmscomputing.device.sca
             public void run() {
                 if (scanner == null) {
                     scanner = Scanner.getDevice();
-                    scanner.addListener(TwainDevice.this);
+                    scanner.addListener(TwainManager.this);
                 }
                 try {
                     scanner.select();
                     scanner.acquire();
                 } catch (ScannerIOException ex) {
-                    Logger.getLogger(TwainDevice.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(TwainManager.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
             }
@@ -113,7 +113,7 @@ public class TwainDevice implements ScannerDevice, uk.co.mmscomputing.device.sca
             }
 
         } catch (ScannerIOException ex) {
-            Logger.getLogger(TwainDevice.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TwainManager.class.getName()).log(Level.SEVERE, null, ex);
         }
         return result;
     }

@@ -14,13 +14,13 @@ import org.openide.util.Lookup;
  */
 public class ScannerFactory {
 
-    public static ScannerDevice getManager(){
+    public static ScannerManager getManager(){
         
-        return Lookup.getDefault().lookup(ScannerDevice.class);
+        return Lookup.getDefault().lookup(ScannerManager.class);
     }
     
-    public static Collection<ScannerDevice> getManagerList(){
-        return (Collection<ScannerDevice>) Lookup.getDefault().lookupAll(ScannerDevice.class);
+    public static Collection<ScannerManager> getManagerList(){
+        return (Collection<ScannerManager>) Lookup.getDefault().lookupAll(ScannerManager.class);
     }
     
 }

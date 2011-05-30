@@ -3,8 +3,8 @@
 <filesystem>
     <folder name="Services">
         <folder name="Hidden">
-            <file name="org-demo-twainservice-TwainDevice.instance">
-                <attr name="instanceOf" stringvalue="org.demo.scannerservice.ScannerDevice"/>
+            <file name="org-demo-twainservice-TwainManager.instance">
+                <attr name="instanceOf" stringvalue="org.demo.scannerservice.ScannerManager"/>
             </file>
         </folder>
     </folder>

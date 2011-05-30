@@ -7,7 +7,7 @@ import java.util.Collection;
  *
  * @author edwin
  */
-public interface ScannerDevice {
+public interface ScannerManager {
 
     public void addListener(ScannerListener listener);
     public void removeListener(ScannerListener listener);

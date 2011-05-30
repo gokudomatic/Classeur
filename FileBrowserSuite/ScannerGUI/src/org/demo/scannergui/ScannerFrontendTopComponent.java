@@ -12,7 +12,7 @@ import org.demo.core.CentralLookup;
 import org.demo.fileservice.DocumentWriter;
 import org.demo.fileservice.Extension;
 import org.demo.fileservice.ExtensionMap;
-import org.demo.scannerservice.ScannerDevice;
+import org.demo.scannerservice.ScannerManager;
 import org.demo.scannerservice.ScannerFactory;
 import org.demo.scannerservice.ScannerListener;
 import org.openide.util.Exceptions;
@@ -114,7 +114,7 @@ public final class ScannerFrontendTopComponent extends TopComponent {
 
     private void scanBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scanBtnActionPerformed
         scanBtn.setEnabled(false);
-        ScannerDevice manager = ScannerFactory.getManager();
+        ScannerManager manager = ScannerFactory.getManager();
         manager.addListener(new ScannerListener() {
 
             @Override

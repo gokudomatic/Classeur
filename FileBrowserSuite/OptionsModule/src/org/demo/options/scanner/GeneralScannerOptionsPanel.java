@@ -10,7 +10,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.SwingUtilities;
 import org.demo.scannerservice.Scanner;
-import org.demo.scannerservice.ScannerDevice;
+import org.demo.scannerservice.ScannerManager;
 import org.demo.scannerservice.ScannerFactory;
 import org.openide.util.RequestProcessor;
 
@@ -212,7 +212,7 @@ final class GeneralScannerOptionsPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void managersComboboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_managersComboboxActionPerformed
-        updateListScanners((ScannerDevice) managersCombobox.getSelectedItem());
+        updateListScanners((ScannerManager) managersCombobox.getSelectedItem());
     }//GEN-LAST:event_managersComboboxActionPerformed
 
     void load() {
@@ -227,8 +227,8 @@ final class GeneralScannerOptionsPanel extends javax.swing.JPanel {
 
         DefaultComboBoxModel model = managerListModel;
         model.removeAllElements();
-        Collection<ScannerDevice> managers = ScannerFactory.getManagerList();
-        for (ScannerDevice manager : managers) {
+        Collection<ScannerManager> managers = ScannerFactory.getManagerList();
+        for (ScannerManager manager : managers) {
             model.addElement(manager);
         }
     }
@@ -272,7 +272,7 @@ final class GeneralScannerOptionsPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
     private static RequestProcessor rp = new RequestProcessor(GeneralScannerOptionsPanel.class.getName(), 1);
 
-    private void updateListScanners(final ScannerDevice scannerDevice) {
+    private void updateListScanners(final ScannerManager scannerDevice) {
         scannerListModel.removeAllElements();
         scannerListModel.addElement("Searching devices...");
         rp.post(new Runnable() {

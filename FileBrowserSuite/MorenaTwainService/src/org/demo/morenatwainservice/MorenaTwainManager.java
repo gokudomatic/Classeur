@@ -16,14 +16,14 @@ import javax.swing.event.EventListenerList;
 import org.demo.morena.MorenaScanner;
 import org.demo.scannerservice.Parameters;
 import org.demo.scannerservice.Scanner;
-import org.demo.scannerservice.ScannerDevice;
+import org.demo.scannerservice.ScannerManager;
 import org.demo.scannerservice.ScannerListener;
 
 /**
  *
  * @author ECO
  */
-public class MorenaTwainDevice implements ScannerDevice {
+public class MorenaTwainManager implements ScannerManager {
 
     private final EventListenerList listeners = new EventListenerList();    
     
@@ -72,7 +72,7 @@ public class MorenaTwainDevice implements ScannerDevice {
                 result.add(new MorenaScanner(twainSource));
             }
         } catch (TwainException ex) {
-            Logger.getLogger(MorenaTwainDevice.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MorenaTwainManager.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return result;

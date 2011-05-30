@@ -20,14 +20,14 @@ import javax.swing.event.EventListenerList;
 import org.demo.morena.MorenaScanner;
 import org.demo.scannerservice.Parameters;
 import org.demo.scannerservice.Scanner;
-import org.demo.scannerservice.ScannerDevice;
+import org.demo.scannerservice.ScannerManager;
 import org.demo.scannerservice.ScannerListener;
 
 /**
  *
  * @author ECO
  */
-public class MorenaSaneDevice implements ScannerDevice {
+public class MorenaSaneManager implements ScannerManager {
 
     private final EventListenerList listeners = new EventListenerList();
 
@@ -79,9 +79,9 @@ public class MorenaSaneDevice implements ScannerDevice {
             }
 
         } catch (SaneException ex) {
-            Logger.getLogger(MorenaSaneDevice.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MorenaSaneManager.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(MorenaSaneDevice.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MorenaSaneManager.class.getName()).log(Level.SEVERE, null, ex);
         }
         return result;
     }
