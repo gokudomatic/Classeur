@@ -22,5 +22,10 @@ public class TwainScanner implements Scanner {
     public String toString() {
         return name;
     }
+
+    @Override
+    public double[] getSupportedResolutions() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
     
 }

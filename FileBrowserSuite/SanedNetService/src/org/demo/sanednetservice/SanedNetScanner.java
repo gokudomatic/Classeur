@@ -23,5 +23,10 @@ public class SanedNetScanner implements Scanner{
     SanedNetScanner(JSane_Base_Device device) {
         name=device.getName();
     }
+
+    @Override
+    public double[] getSupportedResolutions() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
     
 }
