@@ -17,6 +17,7 @@ import uk.co.mmscomputing.device.scanner.Scanner;
 import uk.co.mmscomputing.device.scanner.ScannerIOException;
 import uk.co.mmscomputing.device.scanner.ScannerIOMetadata;
 import uk.co.mmscomputing.device.scanner.ScannerIOMetadata.Type;
+import uk.co.mmscomputing.device.twain.TwainIdentity;
 
 /**
  *
@@ -105,16 +106,14 @@ public class TwainManager implements ScannerManager, uk.co.mmscomputing.device.s
     @Override
     public Collection<org.demo.scannerservice.Scanner> getListDevices() {
         Collection<org.demo.scannerservice.Scanner> result = new ArrayList<org.demo.scannerservice.Scanner>();
-        try {
-            String[] deviceNames = Scanner.getDevice().getDeviceNames();
-
-            for (String deviceName : deviceNames) {
-                result.add(new TwainScanner(deviceName));
+            
+            uk.co.mmscomputing.device.twain.TwainScanner twainMgr=(uk.co.mmscomputing.device.twain.TwainScanner) Scanner.getDevice();
+            TwainIdentity[] identities = twainMgr.getIdentities();
+            
+            for (TwainIdentity identity : identities) {
+                result.add(new TwainScanner(identity));
             }
 
-        } catch (ScannerIOException ex) {
-            Logger.getLogger(TwainManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
         return result;
     }
 }

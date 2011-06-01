@@ -6,7 +6,10 @@ package org.demo.morena;
 
 import SK.gnome.morena.MorenaSource;
 import SK.gnome.sane.SaneSource;
+import SK.gnome.twain.TwainException;
 import SK.gnome.twain.TwainSource;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.demo.scannerservice.Scanner;
 
 /**
@@ -31,14 +34,17 @@ public class MorenaScanner implements Scanner {
     public double[] getSupportedResolutions() {
         if(src instanceof TwainSource){
             TwainSource twainsrc=(TwainSource) src;
-            
-            return twainsrc.getSupportedXResolution();
+            try {
+                return twainsrc.getSupportedXResolution();
+            } catch (TwainException ex) {
+                Logger.getLogger(MorenaScanner.class.getName()).log(Level.SEVERE, null, ex);
+            }
             
         }else if(src instanceof SaneSource){
             SaneSource sanesrc=(SaneSource) src;
             
-            return sanesrc.get
         }
+        return null;
     }
     
 }

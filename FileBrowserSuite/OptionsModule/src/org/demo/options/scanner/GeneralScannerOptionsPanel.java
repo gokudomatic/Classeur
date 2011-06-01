@@ -20,6 +20,8 @@ final class GeneralScannerOptionsPanel extends javax.swing.JPanel {
     private final DefaultListModel scannerListModel = new DefaultListModel();
     private final GeneralScannerOptionsOptionsPanelController controller;
 
+    private final DefaultComboBoxModel resolutionListModel = new DefaultComboBoxModel();
+    
     GeneralScannerOptionsPanel(GeneralScannerOptionsOptionsPanelController controller) {
         this.controller = controller;
         initComponents();
@@ -49,7 +51,7 @@ final class GeneralScannerOptionsPanel extends javax.swing.JPanel {
         jScrollPane3 = new javax.swing.JScrollPane();
         deviceList = new javax.swing.JList();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        resolutionCombobox = new javax.swing.JComboBox();
         jLabel6 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox();
         jLabel7 = new javax.swing.JLabel();
@@ -95,11 +97,16 @@ final class GeneralScannerOptionsPanel extends javax.swing.JPanel {
         org.openide.awt.Mnemonics.setLocalizedText(jLabel4, org.openide.util.NbBundle.getMessage(GeneralScannerOptionsPanel.class, "GeneralScannerOptionsPanel.jLabel4.text")); // NOI18N
 
         deviceList.setModel(scannerListModel);
+        deviceList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                deviceListValueChanged(evt);
+            }
+        });
         jScrollPane3.setViewportView(deviceList);
 
         org.openide.awt.Mnemonics.setLocalizedText(jLabel5, org.openide.util.NbBundle.getMessage(GeneralScannerOptionsPanel.class, "GeneralScannerOptionsPanel.jLabel5.text")); // NOI18N
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        resolutionCombobox.setModel(resolutionListModel);
 
         org.openide.awt.Mnemonics.setLocalizedText(jLabel6, org.openide.util.NbBundle.getMessage(GeneralScannerOptionsPanel.class, "GeneralScannerOptionsPanel.jLabel6.text")); // NOI18N
 
@@ -142,7 +149,7 @@ final class GeneralScannerOptionsPanel extends javax.swing.JPanel {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(resolutionCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -167,7 +174,7 @@ final class GeneralScannerOptionsPanel extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(resolutionCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
@@ -206,7 +213,7 @@ final class GeneralScannerOptionsPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -214,6 +221,10 @@ final class GeneralScannerOptionsPanel extends javax.swing.JPanel {
     private void managersComboboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_managersComboboxActionPerformed
         updateListScanners((ScannerManager) managersCombobox.getSelectedItem());
     }//GEN-LAST:event_managersComboboxActionPerformed
+
+    private void deviceListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_deviceListValueChanged
+        updateDetailScanner((Scanner)deviceList.getSelectedValue());
+    }//GEN-LAST:event_deviceListValueChanged
 
     void load() {
         // TODO read settings and initialize GUI
@@ -250,7 +261,6 @@ final class GeneralScannerOptionsPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addPresetBtn;
     private javax.swing.JList deviceList;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JComboBox jComboBox3;
     private javax.swing.JLabel jLabel1;
@@ -268,6 +278,7 @@ final class GeneralScannerOptionsPanel extends javax.swing.JPanel {
     private javax.swing.JList presetList;
     private javax.swing.JTextField presetNameEdit;
     private javax.swing.JButton removePresetBtn;
+    private javax.swing.JComboBox resolutionCombobox;
     private javax.swing.JButton savePresetBtn;
     // End of variables declaration//GEN-END:variables
     private static RequestProcessor rp = new RequestProcessor(GeneralScannerOptionsPanel.class.getName(), 1);
@@ -289,5 +300,13 @@ final class GeneralScannerOptionsPanel extends javax.swing.JPanel {
 
             }
         });
+    }
+
+    private void updateDetailScanner(Scanner scanner) {
+        resolutionListModel.removeAllElements();
+        if(scanner==null){
+            return;
+        }
+        System.out.println(scanner.toString());
     }
 }

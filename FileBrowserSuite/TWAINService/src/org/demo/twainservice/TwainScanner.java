@@ -5,6 +5,7 @@
 package org.demo.twainservice;
 
 import org.demo.scannerservice.Scanner;
+import uk.co.mmscomputing.device.twain.TwainIdentity;
 
 /**
  *
@@ -12,20 +13,21 @@ import org.demo.scannerservice.Scanner;
  */
 public class TwainScanner implements Scanner {
     
-    private String name;
+    private TwainIdentity src;
 
-    public TwainScanner(String name) {
-        this.name = name;
+    public TwainScanner(TwainIdentity identity) {
+        this.src = identity;
     }
 
     @Override
     public String toString() {
-        return name;
+        return src.getProductName();
     }
 
     @Override
     public double[] getSupportedResolutions() {
         throw new UnsupportedOperationException("Not supported yet.");
+        
     }
     
 }
