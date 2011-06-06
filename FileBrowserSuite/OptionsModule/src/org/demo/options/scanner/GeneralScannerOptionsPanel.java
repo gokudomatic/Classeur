@@ -307,6 +307,9 @@ final class GeneralScannerOptionsPanel extends javax.swing.JPanel {
         if(scanner==null){
             return;
         }
-        System.out.println(scanner.toString());
+        double[] supportedResolutions = scanner.getSupportedResolutions();
+        for (double d : supportedResolutions) {
+            resolutionListModel.addElement(String.valueOf(d));
+        }
     }
 }

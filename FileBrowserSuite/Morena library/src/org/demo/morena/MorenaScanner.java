@@ -20,22 +20,16 @@ public class MorenaScanner implements Scanner {
 
     private MorenaSource src;
     private String name;
+    private double[] supportedResolutions=null;
     
     public MorenaScanner(MorenaSource src) {
         this.src=src;
         name=src.toString();
-    }
-
-    @Override
-    public String toString() {
-        return name;
-    }
-
-    public double[] getSupportedResolutions() {
+        
         if(src instanceof TwainSource){
             TwainSource twainsrc=(TwainSource) src;
             try {
-                return twainsrc.getSupportedXResolution();
+                supportedResolutions=twainsrc.getSupportedXResolution();
             } catch (TwainException ex) {
                 Logger.getLogger(MorenaScanner.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -44,7 +38,16 @@ public class MorenaScanner implements Scanner {
             SaneSource sanesrc=(SaneSource) src;
             
         }
-        return null;
+        
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
+
+    public double[] getSupportedResolutions() {
+        return supportedResolutions;
     }
     
 }
