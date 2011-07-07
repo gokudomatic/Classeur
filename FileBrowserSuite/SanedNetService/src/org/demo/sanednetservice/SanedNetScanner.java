@@ -28,5 +28,10 @@ public class SanedNetScanner implements Scanner{
     public double[] getSupportedResolutions() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
+    @Override
+    public int[] getSupportedBitDepth() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
     
 }

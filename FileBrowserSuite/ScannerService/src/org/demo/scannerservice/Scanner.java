@@ -11,5 +11,7 @@ package org.demo.scannerservice;
 public interface Scanner {
 
     double[] getSupportedResolutions();
+
+    public int[] getSupportedBitDepth();
     
 }

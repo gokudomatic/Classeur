@@ -29,5 +29,10 @@ public class TwainScanner implements Scanner {
         throw new UnsupportedOperationException("Not supported yet.");
         
     }
+
+    @Override
+    public int[] getSupportedBitDepth() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
     
 }
