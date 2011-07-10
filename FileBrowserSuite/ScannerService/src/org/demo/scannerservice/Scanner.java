@@ -4,6 +4,8 @@
  */
 package org.demo.scannerservice;
 
+import java.util.List;
+
 /**
  *
  * @author edwin
@@ -14,4 +16,5 @@ public interface Scanner {
 
     public int[] getSupportedBitDepth();
     
+    public List<String> getSupportedModes();
 }

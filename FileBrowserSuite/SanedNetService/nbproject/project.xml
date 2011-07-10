@@ -14,14 +14,18 @@
                         <specification-version>1.0</specification-version>
                     </run-dependency>
                 </dependency>
+                <dependency>
+                    <code-name-base>uk.org.jsane</code-name-base>
+                    <build-prerequisite/>
+                    <compile-dependency/>
+                    <run-dependency>
+                        <specification-version>1.0</specification-version>
+                    </run-dependency>
+                </dependency>
             </module-dependencies>
             <public-packages>
                 <package>org.demo.sanednetservice</package>
             </public-packages>
-            <class-path-extension>
-                <runtime-relative-path>ext/jsane-0.8.0.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/jsane-0.8.0.jar</binary-origin>
-            </class-path-extension>
         </data>
     </configuration>
 </project>

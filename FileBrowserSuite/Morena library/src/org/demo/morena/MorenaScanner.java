@@ -8,6 +8,7 @@ import SK.gnome.morena.MorenaSource;
 import SK.gnome.sane.SaneSource;
 import SK.gnome.twain.TwainException;
 import SK.gnome.twain.TwainSource;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.demo.scannerservice.Scanner;
@@ -54,6 +55,10 @@ public class MorenaScanner implements Scanner {
 
     public int[] getSupportedBitDepth() {
         return supportedBitDepth;
+    }
+
+    public List<String> getSupportedModes() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     
 }

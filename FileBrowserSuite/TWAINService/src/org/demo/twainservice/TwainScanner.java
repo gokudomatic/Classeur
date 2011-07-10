@@ -4,6 +4,7 @@
  */
 package org.demo.twainservice;
 
+import java.util.List;
 import org.demo.scannerservice.Scanner;
 import uk.co.mmscomputing.device.twain.TwainIdentity;
 
@@ -32,6 +33,11 @@ public class TwainScanner implements Scanner {
 
     @Override
     public int[] getSupportedBitDepth() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public List<String> getSupportedModes() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     

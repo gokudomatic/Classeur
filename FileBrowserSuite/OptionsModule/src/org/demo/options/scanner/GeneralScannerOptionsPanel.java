@@ -22,6 +22,7 @@ final class GeneralScannerOptionsPanel extends javax.swing.JPanel {
 
     private final DefaultComboBoxModel resolutionListModel = new DefaultComboBoxModel();
     private final DefaultComboBoxModel bitDepthComboModel = new DefaultComboBoxModel();
+    private final DefaultComboBoxModel modeComboModel = new DefaultComboBoxModel();
     
     GeneralScannerOptionsPanel(GeneralScannerOptionsOptionsPanelController controller) {
         this.controller = controller;
@@ -56,7 +57,7 @@ final class GeneralScannerOptionsPanel extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         bitDepthCombo = new javax.swing.JComboBox();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox();
+        modeCombo = new javax.swing.JComboBox();
         managersCombobox = new javax.swing.JComboBox();
 
         org.openide.awt.Mnemonics.setLocalizedText(jLabel1, org.openide.util.NbBundle.getMessage(GeneralScannerOptionsPanel.class, "GeneralScannerOptionsPanel.jLabel1.text")); // NOI18N
@@ -115,7 +116,7 @@ final class GeneralScannerOptionsPanel extends javax.swing.JPanel {
 
         org.openide.awt.Mnemonics.setLocalizedText(jLabel7, org.openide.util.NbBundle.getMessage(GeneralScannerOptionsPanel.class, "GeneralScannerOptionsPanel.jLabel7.text")); // NOI18N
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        modeCombo.setModel(modeComboModel);
 
         managersCombobox.setModel(managerListModel);
         managersCombobox.addActionListener(new java.awt.event.ActionListener() {
@@ -134,7 +135,7 @@ final class GeneralScannerOptionsPanel extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(presetNameEdit, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE))
+                        .addComponent(presetNameEdit, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE))
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -154,7 +155,7 @@ final class GeneralScannerOptionsPanel extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(bitDepthCombo, 0, 192, Short.MAX_VALUE)
-                                    .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                    .addComponent(modeCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -179,7 +180,7 @@ final class GeneralScannerOptionsPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(modeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
@@ -208,7 +209,7 @@ final class GeneralScannerOptionsPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, 0, 246, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, 0, 250, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -263,7 +264,6 @@ final class GeneralScannerOptionsPanel extends javax.swing.JPanel {
     private javax.swing.JButton addPresetBtn;
     private javax.swing.JComboBox bitDepthCombo;
     private javax.swing.JList deviceList;
-    private javax.swing.JComboBox jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -276,6 +276,7 @@ final class GeneralScannerOptionsPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JComboBox managersCombobox;
+    private javax.swing.JComboBox modeCombo;
     private javax.swing.JList presetList;
     private javax.swing.JTextField presetNameEdit;
     private javax.swing.JButton removePresetBtn;
@@ -317,6 +318,11 @@ final class GeneralScannerOptionsPanel extends javax.swing.JPanel {
         int[] supportedBitDepth=scanner.getSupportedBitDepth();
         for (int depth : supportedBitDepth) {
             bitDepthComboModel.addElement(depth+" bits");
+        }
+        
+        modeComboModel.removeAllElements();
+        for (String mode : scanner.getSupportedModes()) {
+            modeComboModel.addElement(mode);
         }
     }
 }

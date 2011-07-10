@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+OpenIDE-Module: uk.org.jsane
+OpenIDE-Module-Layer: uk/org/jsane/layer.xml
+OpenIDE-Module-Localizing-Bundle: uk/org/jsane/Bundle.properties
+OpenIDE-Module-Specification-Version: 1.0
+
