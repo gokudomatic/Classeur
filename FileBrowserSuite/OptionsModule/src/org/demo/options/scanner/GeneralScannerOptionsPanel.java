@@ -6,6 +6,7 @@ package org.demo.options.scanner;
 
 import java.awt.Component;
 import java.util.Collection;
+import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.SwingUtilities;
@@ -309,13 +310,13 @@ final class GeneralScannerOptionsPanel extends javax.swing.JPanel {
         if(scanner==null){
             return;
         }
-        double[] supportedResolutions = scanner.getSupportedResolutions();
+        List<Double> supportedResolutions = scanner.getSupportedResolutions();
         for (double d : supportedResolutions) {
             resolutionListModel.addElement(String.valueOf(d));
         }
         
         bitDepthComboModel.removeAllElements();
-        int[] supportedBitDepth=scanner.getSupportedBitDepth();
+        List<Integer> supportedBitDepth=scanner.getSupportedBitDepth();
         for (int depth : supportedBitDepth) {
             bitDepthComboModel.addElement(depth+" bits");
         }

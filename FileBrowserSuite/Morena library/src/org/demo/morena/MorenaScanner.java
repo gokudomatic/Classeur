@@ -8,6 +8,8 @@ import SK.gnome.morena.MorenaSource;
 import SK.gnome.sane.SaneSource;
 import SK.gnome.twain.TwainException;
 import SK.gnome.twain.TwainSource;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,8 +23,9 @@ public class MorenaScanner implements Scanner {
 
     private MorenaSource src;
     private String name;
-    private double[] supportedResolutions=null;
-    private int[] supportedBitDepth=null;
+    private List<Double> supportedResolutions=null;
+    private List<Integer> supportedBitDepth=null;
+    private List<String> supportedModes=null;
     
     public MorenaScanner(MorenaSource src) {
         this.src=src;
@@ -31,8 +34,19 @@ public class MorenaScanner implements Scanner {
         if(src instanceof TwainSource){
             TwainSource twainsrc=(TwainSource) src;
             try {
-                supportedResolutions=twainsrc.getSupportedXResolution();
-                supportedBitDepth=twainsrc.getSupportedBitDepth();
+                supportedResolutions=new ArrayList<Double>();
+                double[] supportedXResolution = twainsrc.getSupportedXResolution();
+                for (double d : supportedXResolution) {
+                    supportedResolutions.add(d);
+                }
+                
+                supportedBitDepth=new ArrayList<Integer>();
+                int[] supportedBitDepth1 = twainsrc.getSupportedBitDepth();
+                for (int i : supportedBitDepth1) {
+                    supportedBitDepth.add(i);
+                }
+                
+                supportedModes=new ArrayList<String>();
             } catch (TwainException ex) {
                 Logger.getLogger(MorenaScanner.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -49,16 +63,16 @@ public class MorenaScanner implements Scanner {
         return name;
     }
 
-    public double[] getSupportedResolutions() {
+    public List<Double> getSupportedResolutions() {
         return supportedResolutions;
     }
 
-    public int[] getSupportedBitDepth() {
+    public List<Integer> getSupportedBitDepth() {
         return supportedBitDepth;
     }
 
     public List<String> getSupportedModes() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return supportedModes;
     }
     
 }

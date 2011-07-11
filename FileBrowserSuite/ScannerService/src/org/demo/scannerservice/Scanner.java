@@ -12,9 +12,9 @@ import java.util.List;
  */
 public interface Scanner {
 
-    double[] getSupportedResolutions();
+    public List<Double> getSupportedResolutions();
 
-    public int[] getSupportedBitDepth();
+    public List<Integer> getSupportedBitDepth();
     
     public List<String> getSupportedModes();
 }

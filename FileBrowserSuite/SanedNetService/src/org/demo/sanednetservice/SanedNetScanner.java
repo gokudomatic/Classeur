@@ -27,7 +27,7 @@ import uk.org.jsane.JSane_Net.JSane_Net_Type_Word;
 public class SanedNetScanner implements Scanner {
 
     private String name;
-    private double[] listResolution;
+    private List<Double> listResolution;
     private List<String> listModes=null;
 
     @Override
@@ -61,10 +61,11 @@ public class SanedNetScanner implements Scanner {
             JSane_Base_Option_Type_Descriptor resolutionOption = device.getOption("resolution");
             JSane_Net_Constraint_Word_List resList = (JSane_Net_Constraint_Word_List) resolutionOption.getConstraint();
             Vector resolutions = resList.getList();
-            this.listResolution = new double[resolutions.size()];
+            this.listResolution = new ArrayList<Double>(resolutions.size());
 
             for (int idx = 0; idx < resolutions.size(); idx++) {
-                listResolution[idx] = ((JSane_Net_Type_Word) resolutions.get(idx)).getValue();
+                final int r = ((JSane_Net_Type_Word) resolutions.get(idx)).getValue();
+                listResolution.add((double)r);
             }
 
         } catch (JSane_Exception ex) {
@@ -74,13 +75,13 @@ public class SanedNetScanner implements Scanner {
     }
 
     @Override
-    public double[] getSupportedResolutions() {
+    public List<Double> getSupportedResolutions() {
         return listResolution;
     }
 
     @Override
-    public int[] getSupportedBitDepth() {
-        return new int[]{0};
+    public List<Integer> getSupportedBitDepth() {
+        return new ArrayList<Integer>();
     }
 
     @Override

@@ -25,19 +25,19 @@ public class TwainScanner implements Scanner {
         return src.getProductName();
     }
 
-    @Override
-    public double[] getSupportedResolutions() {
-        throw new UnsupportedOperationException("Not supported yet.");
-        
-    }
-
-    @Override
-    public int[] getSupportedBitDepth() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
     @Override
     public List<String> getSupportedModes() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public List<Double> getSupportedResolutions() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public List<Integer> getSupportedBitDepth() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     
